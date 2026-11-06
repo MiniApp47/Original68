@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }, */
                     {
                         "id": "nova-ff-solero-lemon",
+                                                "outOfStock": true, // Produit indisponible : aucune commande possible
                         "name": "Solero Lemon 🤠🍋",
                         "flag": "🇲🇦",
                         "farm": "NOVA ⭕️🔱 🫆",
@@ -291,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "anonymuz-ice-cream-cake-grape-gas",
+                        "outOfStock": true, // Produit indisponible : aucune commande possible
                         "name": "Ice Cream Cake X Grape Gas 🍧",
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
