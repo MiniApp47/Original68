@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Contact unique ORIGINAL68
   const contactLinks = [
-    { name: 'TELEGRAM', url: 'https://t.me/original68off', className: 'telegram-canal', text: '✈️ CONTACTE' }
+    { name: 'TELEGRAM', url: 'https://t.me/original68off', className: 'telegram-canal', text: '✈️ Telegram ✈️' }
   ];
 
   // --- DONNÉES ORIGINAL68 : HASH et WEED -> 12 FARMS -> 26 PRODUITS ---
@@ -24,19 +24,19 @@ document.addEventListener('DOMContentLoaded', function () {
         "farms": [
             {
                 "id": "no-farm",
-                "name": "NO FARM",
+                "name": "Apiculteur farm 🐝🍯",
                 "icon": "🌴",
                 "badgeText": "Double Static • 1 référence",
                 "products": [
                     {
                         "id": "no-farm-tropical-mango",
-                        "name": "Tropical Mango",
+                        "name": "Tropical Mango 🥭",
                         "flag": "🌴",
-                        "farm": "NO FARM",
+                        "farm": "Apiculteur farm 🐝🍯",
                         "type": "Double Static",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Double Static · NO FARM ",
+                        "image": "ProductAP.png",
+                        "video": "VideoAP.mov",
+                        "description": "Un double static préparer par un passioner pour vous faire le meilleur travail  possible c est du top.\n Le Produit qui parle à ma place ‼️\n Rapport Qualité Prix 🥇 🏆",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -53,18 +53,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "golden-drytech",
-                "name": "GOLDEN DRYTECH FARM",
+                "name": "GOLDEN DRYTECH FARM ✨",
                 "icon": "🏆",
                 "badgeText": "105µ • 1 référence",
                 "products": [
                     {
                         "id": "golden-fruit-joy",
-                        "name": "Fruit Joy",
+                        "outOfStock": true, // Produit indisponible : aucune commande possible
+                        "name": "Fruit Joy 💍",
                         "flag": "🏆",
-                        "farm": "GOLDEN DRYTECH FARM",
+                        "farm": "GOLDEN DRYTECH ✨",
                         "type": "105µ",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
+                        "image": "ProductGFJ.png",
+                        "video": "VideoGFJ.mp4",
                         "description": "Sélection 105µ · GOLDEN DRYTECH FARM ",
                         "promoEligible": false,
                         "tarifs": [
@@ -78,19 +79,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "nova-farm",
-                "name": "NOVA FARM",
+                "name": "NOVA FARM⭕️🔱 🫆",
                 "icon": "💠",
                 "badgeText": "Fresh Frozen / Double Static • 5 références",
                 "products": [
                     {
                         "id": "nova-ff-tangie-mandarine",
-                        "name": "Tangie Mandarine",
-                        "flag": "💠",
-                        "farm": "NOVA FARM",
-                        "type": "Fresh Frozen",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Fresh Frozen · NOVA FARM ",
+                        "name": "Tangie Mandarine 🍊🌊",
+                        "flag": "🇲🇦",
+                        "farm": "NOVA ⭕️🔱 🫆",
+                        "type": "Fresh Frozen 🧊",
+                        "image": "ProductTM.png",
+                        "video": "VideoTM.mp4",
+                        "description": "Une Farmz 🧑‍🌾fabriqué avec un savoir faire 🔞hors du commun 💀😈un costume 🤵 sur mesure📏 tout et là l Élite du game.",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -103,15 +104,15 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                         ]
                     },
-                    {
+                  /*   {
                         "id": "nova-ff-mimosa-max",
-                        "name": "Mimosa Max",
-                        "flag": "💠",
+                        "name": "Mimosa Max 🍹🧊",
+                        "flag": "🇲🇦",
                         "farm": "NOVA FARM",
                         "type": "Fresh Frozen",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Fresh Frozen · NOVA FARM ",
+                        "image": "ProductNM.png",
+                        "video": "VideoNM.mov",
+                        "description": "Une Farmz 🧑‍🌾fabriqué avec un savoir faire 🔞hors du commun 💀😈un costume 🤵 sur mesure📏 tout et là l Élite du game.",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -123,16 +124,16 @@ document.addEventListener('DOMContentLoaded', function () {
                                 "price": 70
                             }
                         ]
-                    },
+                    }, */
                     {
                         "id": "nova-ff-solero-lemon",
-                        "name": "Solero Lemon",
-                        "flag": "💠",
-                        "farm": "NOVA FARM",
-                        "type": "Fresh Frozen",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Fresh Frozen · NOVA FARM ",
+                        "name": "Solero Lemon 🤠🍋",
+                        "flag": "🇲🇦",
+                        "farm": "NOVA ⭕️🔱 🫆",
+                        "type": "Fresh Frozen 🧊",
+                        "image": "ProductSL.png",
+                        "video": "VideoSL.mp4",
+                        "description": "Une Farmz 🧑‍🌾fabriqué avec un savoir faire 🔞hors du commun 💀😈un costume 🤵 sur mesure📏 tout et là l Élite du game.",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -147,13 +148,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "nova-static-orange-runtz",
-                        "name": "Orange Runtz",
-                        "flag": "💠",
-                        "farm": "NOVA FARM",
-                        "type": "Double Static",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Double Static · NOVA FARM ",
+                        "name": "Orange Runtz 🍬🍊",
+                        "flag": "🇲🇦",
+                        "farm": "NOVA ⭕️🔱 🫆",
+                        "type": "Double Static ⚡",
+                        "image": "ProductOR.png",
+                        "video": "VideoOR.mov",
+                        "description": "Une Farmz 🧑‍🌾fabriqué avec un savoir faire 🔞hors du commun 💀😈un costume 🤵 sur mesure📏 tout et là l Élite du game.",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -172,13 +173,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "nova-static-mimosa-max",
-                        "name": "Mimosa Max",
-                        "flag": "💠",
-                        "farm": "NOVA FARM",
-                        "type": "Double Static",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Double Static · NOVA FARM ",
+                        "name": "Mimosa Max 🍹⚡",
+                        "flag": "🇲🇦",
+                        "farm": "NOVA ⭕️🔱 🫆",
+                        "type": "Double Static ⚡",
+                        "image": "ProductNM.png",
+                        "video": "VideoNM.mov",
+                        "description": "Une Farmz 🧑‍🌾fabriqué avec un savoir faire 🔞hors du commun 💀😈un costume 🤵 sur mesure📏 tout et là l Élite du game.",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -199,19 +200,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "anonymuz",
-                "name": "ANONYMUZ FARMZ",
+                "name": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                 "icon": "🪐",
                 "badgeText": "FFS / 120µ • 5 références",
                 "products": [
                     {
                         "id": "anonymuz-tropicali",
-                        "name": "Tropicali",
-                        "flag": "🪐",
-                        "farm": "ANONYMUZ FARMZ",
+                        "name": "Tropicali 🏝️🍹",
+                        "flag": "🇲🇦",
+                        "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                         "type": "FFS",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection FFS · ANONYMUZ FARMZ ",
+                        "image": "ProductAN.png",
+                        "video": "VideoAN.mov",
+                        "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -226,13 +227,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "anonymuz-tropic-guavana",
-                        "name": "Tropic Guavana",
-                        "flag": "🪐",
-                        "farm": "ANONYMUZ FARMZ",
+                        "name": "Tropic Guavana 🥭",
+                        "flag": "🇲🇦",
+                        "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                         "type": "FFS",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection FFS · ANONYMUZ FARMZ ",
+                        "image": "ProductAN.png",
+                        "video": "VideoAN.mov",
+                        "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -247,13 +248,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "anonymuz-tropic-cherry",
-                        "name": "Tropic Cherry",
-                        "flag": "🪐",
-                        "farm": "ANONYMUZ FARMZ",
+                        "name": "Tropic Cherry 🍒",
+                        "flag": "🇲🇦",
+                        "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                         "type": "FFS",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection FFS · ANONYMUZ FARMZ ",
+                        "image": "ProductAN.png",
+                        "video": "VideoAN.mov",
+                        "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -268,13 +269,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "anonymuz-white-tropicali",
-                        "name": "White Tropicali",
-                        "flag": "🪐",
-                        "farm": "ANONYMUZ FARMZ",
+                        "name": "White Tropicali 🍍",
+                        "flag": "🇲🇦",
+                        "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                         "type": "FFS",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection FFS · ANONYMUZ FARMZ ",
+                        "image": "ProductAN.png",
+                        "video": "VideoAN.mov",
+                        "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -289,13 +290,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "anonymuz-ice-cream-cake-grape-gas",
-                        "name": "Ice Cream Cake X Grape Gas",
-                        "flag": "🪐",
-                        "farm": "ANONYMUZ FARMZ",
+                        "name": "Ice Cream Cake X Grape Gas 🍧",
+                        "flag": "🇲🇦",
+                        "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                         "type": "120µ",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection 120µ · ANONYMUZ FARMZ ",
+                        "image": "ProductAN.png",
+                        "video": "VideoAN.mov",
+                        "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -308,19 +309,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "paradise-valley",
-                "name": "PARADISE VALLEY",
+                "name": "PARADISE VALLEY 🇮🇹🇲🇦",
                 "icon": "🌴",
                 "badgeText": "Static Prime • 2 références",
                 "products": [
                     {
                         "id": "paradise-pikachu-peach",
-                        "name": "Pikachu Peach",
-                        "flag": "🌴",
-                        "farm": "PARADISE VALLEY",
+                        "name": "Pikachu Peach ⚡🍑",
+                        "flag": "🇮🇹",
+                        "farm": "PARADISE VALLEY 🇮🇹🇲🇦",
                         "type": "Static Prime",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Static Prime · PARADISE VALLEY ",
+                        "image": "ProductPP.png",
+                        "video": "VideoPP.mp4",
+                        "description": "La Team une exclusivité Marocaine Paradise Valley un savoir faire unique avec des strain incroyable Qualités avant Quantité les amis.\n\n Arômes et saveurs 🧑‍🍳\n Notes sucrées, fruitées, d'agrumes et d'orange (riches en terpènes comme le limonène)\n Effets typiques 🧠🤯\n Énergisant, stimulant, humeur positive et créative",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -335,13 +336,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "paradise-forbiden-tropic",
-                        "name": "Forbiden Tropic",
-                        "flag": "🌴",
-                        "farm": "PARADISE VALLEY",
+                        "name": "Forbiden Tropic 🍍",
+                        "flag": "🇮🇹",
+                        "farm": "PARADISE VALLEY 🇮🇹🇲🇦",
                         "type": "Static Prime",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Static Prime · PARADISE VALLEY ",
+                        "image": "ProductPP.png",
+                        "video": "VideoPP.mp4",
+                        "description": "La Team une exclusivité Marocaine Paradise Valley un savoir faire unique avec des strain incroyable Qualités avant Quantité les amis.\n\n Arômes et saveurs 🧑‍🍳\n Notes sucrées, fruitées, d'agrumes et d'orange (riches en terpènes comme le limonène)\n Effets typiques 🧠🤯\n Énergisant, stimulant, humeur positive et créative",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -358,19 +359,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "smuggler",
-                "name": "SMUGGLER FARM",
+                "name": "SMUGGLER FARM 🧨",
                 "icon": "🍬",
                 "badgeText": "Frozen • 1 référence",
                 "products": [
                     {
                         "id": "smuggler-calippo-x-ff",
-                        "name": "Calippo X ff",
+                        "name": "Calippo X ff ❄️",
                         "flag": "🍬",
-                        "farm": "SMUGGLER FARM",
+                        "farm": "SMUGGLER 🧨",
                         "type": "Frozen",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Frozen · SMUGGLER FARM ",
+                        "image": "ProductSM.png",
+                        "video": "VideoSM.mov",
+                        "description": "Cette Farms fait partie de l élite du Game 🎮 du vrai Frozen avec des strain très représentatifs 10/10 👅\n Qualité du produit et remarquable Forget en enfer 🔥vrai sucrerie 🍬 ramène tout droit des enfers",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -387,19 +388,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "quality-can-you-taste",
-                "name": "QUALITY CAN YOU TASTE",
+                "name": "QUALITY CAN YOU TASTE 🇺🇸",
                 "icon": "🇺🇸",
                 "badgeText": "Static • 1 référence",
                 "products": [
                     {
                         "id": "quality-berry-white",
-                        "name": "Berry White",
+                        "name": "Berry White 🍓",
                         "flag": "🇺🇸",
-                        "farm": "QUALITY CAN YOU TASTE",
+                        "farm": "QUALITY CAN YOU TASTE 🇺🇸",
                         "type": "Static",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Static · QUALITY CAN YOU TASTE ",
+                        "image": "ProductBW.png",
+                        "video": "VideoBW.mov",
+                        "description": "La Team produit d exception💎 une saveur🧑‍🍳 particulièrement unique pour les papilles Une des meilleur Farms us 🇺🇸 pas peur de le dire c est le Produit🧈 qui parle à ma place‼️🏆. \n Du vrai Caramel beurre salé 🧈",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -412,19 +413,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "liquid-farm",
-                "name": "LIQUID FARM",
+                "name": "LIQUID FARM 🔱🇺🇸🥷",
                 "icon": "🇺🇸",
                 "badgeText": "Wpff • 2 références",
                 "products": [
                     {
                         "id": "liquid-papaya",
-                        "name": "Papaya",
+                        "name": "Papaya 🥭",
                         "flag": "🇺🇸",
-                        "farm": "LIQUID FARM",
+                        "farm": "LIQUID 🔱🇺🇸🥷",
                         "type": "Wpff",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Wpff · LIQUID FARM ",
+                        "image": "ProductP.png",
+                        "video": "VideoP.mov",
+                        "description": "Nouveau Drop Liquid Farms Wpff🔱🇺🇸🥷\n Un Wpff rincé par un expert pour vous faire le meilleur Wpff possible c est du beurre 🧈 tout simplement les amis après inhalation les effets son magique 🧙 vous passerez un agréable moment sur votre petit nuage ☁️ qui vous transportera sur L.A🇺🇸.\n Le Produit qui parle à ma place ‼️\n Rapport Qualité Prix 🥇 \n Quantité Limité ⚠️ ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -435,13 +436,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "liquid-paplato",
-                        "name": "Paplato",
+                        "name": "Paplato 🍰",
                         "flag": "🇺🇸",
-                        "farm": "LIQUID FARM",
+                        "farm": "LIQUID 🔱🇺🇸🥷",
                         "type": "Wpff",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Wpff · LIQUID FARM ",
+                        "image": "ProductPL.png",
+                        "video": "VideoPL.mov",
+                        "description": "Nouveau Drop Liquid Farms Wpff🔱🇺🇸🥷\n Un Wpff rincé par un expert pour vous faire le meilleur Wpff possible c est du beurre 🧈 tout simplement les amis après inhalation les effets son magique 🧙 vous passerez un agréable moment sur votre petit nuage ☁️ qui vous transportera sur L.A🇺🇸.\n Le Produit qui parle à ma place ‼️\n Rapport Qualité Prix 🥇 \n Quantité Limité ⚠️ ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -454,19 +455,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "staticroom",
-                "name": "STATICROOM",
+                "name": "STATICROOM 🧤🫆💗",
                 "icon": "🇺🇸",
                 "badgeText": "Static • 2 références",
                 "products": [
                     {
                         "id": "staticroom-white-runtz",
-                        "name": "White Runtz",
+                        "name": "White Runtz🌴🍦",
                         "flag": "🇺🇸",
-                        "farm": "STATICROOM",
+                        "farm": "Static Room 🧤🫆💗",
                         "type": "Static",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Static · STATICROOM ",
+                        "image": "ProductWR.png",
+                        "video": "VideoWR.mov",
+                        "description": "Static Room est une marque ou un producteur artisanal de concentrés de cannabis (notamment présent sur le marché légal de l'État de New York). Lorsque l'on associe White Runtz à Static Room, il s'agit généralement de leur Static Sift Hash ou de leurs collaborations pour des produits d'exception comme des hash holes (joints pré-roulés infusés au hash\n La technique du \"Static Sift\" par Static Room Le terme \"Static\" fait référence à la méthode d'extraction utilisée : le static tech ou tamisage électrostatique.\n Le principe : Cette méthode post-traitement utilise l'électricité statique (généralement à l'aide de gants ou de rouleaux spécifiques) pour séparer les têtes des trichomes (glandes de résine pures) de tous les débris végétaux restants (Feuilles, tiges pulvérisées\n Le résultat : On obtient un hash d'une pureté extrême (souvent estimée entre 85% et 95% de têtes de trichomes intactes), qui fond complètement à la chaleur (full melt) et offre une clarté de saveur inégalée.[1]\n Le profil de la variété White Runtz White Runtz est l'une des génétiques hybrides les plus populaires et les plus adaptées à ce type de concentré haut de gamme.\n Génétique : Un croisement californien mythique entre la Zkittlez et la Gelato.\n Arômes : Une saveur extrêmement fruitée, sucrée, tropicale, évoquant des bonbons aux agrumes et aux baies acidulées.\n Effets : Très équilibrée mais puissant Il procure d'abord une vague d'euphorie et de créativité cérébrale avant de basculer vers une relaxation physique intense et chaleureuse sans pour autant provoquer un effet de lourdeur totale Les concentrés élaborés par Static Room à partir de la White Runtz sont particulièrement recherchés par les connaisseurs pour leur capacité à restituer fidèlement et intensément ce profil de terpènes très sucrés 🍦 ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -477,13 +478,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "staticroom-cereal-milk",
-                        "name": "Cereal Milk",
+                        "name": "Cereal milk 🥛🍪",
                         "flag": "🇺🇸",
-                        "farm": "STATICROOM",
+                        "farm": "Static Room 🧤🫆💗",
                         "type": "Static",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Static · STATICROOM ",
+                        "image": "ProductCM.png",
+                        "video": "VideoCM.mov",
+                        "description": "Static Room est une marque ou un producteur artisanal de concentrés de cannabis (notamment présent sur le marché légal de l'État de New York). Lorsque l'on associe White Runtz à Static Room, il s'agit généralement de leur Static Sift Hash ou de leurs collaborations pour des produits d'exception comme des hash holes (joints pré-roulés infusés au hash\n La technique du \"Static Sift\" par Static Room Le terme \"Static\" fait référence à la méthode d'extraction utilisée : le static tech ou tamisage électrostatique.\n Le principe : Cette méthode post-traitement utilise l'électricité statique (généralement à l'aide de gants ou de rouleaux spécifiques) pour séparer les têtes des trichomes (glandes de résine pures) de tous les débris végétaux restants (Feuilles, tiges pulvérisées\n Le résultat : On obtient un hash d'une pureté extrême (souvent estimée entre 85% et 95% de têtes de trichomes intactes), qui fond complètement à la chaleur (full melt) et offre une clarté de saveur inégalée.[1]\n Le profil de la variété White Runtz White Runtz est l'une des génétiques hybrides les plus populaires et les plus adaptées à ce type de concentré haut de gamme.\n Génétique : Un croisement californien mythique entre la Zkittlez et la Gelato.\n Arômes : Une saveur extrêmement fruitée, sucrée, tropicale, évoquant des bonbons aux agrumes et aux baies acidulées.\n Effets : Très équilibrée mais puissant Il procure d'abord une vague d'euphorie et de créativité cérébrale avant de basculer vers une relaxation physique intense et chaleureuse sans pour autant provoquer un effet de lourdeur totale Les concentrés élaborés par Static Room à partir de la White Runtz sont particulièrement recherchés par les connaisseurs pour leur capacité à restituer fidèlement et intensément ce profil de terpènes très sucrés 🍦 ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -496,19 +497,19 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "humboldt",
-                "name": "HUMBOLDT",
+                "name": "HUMBOLDT 🥇⚠️",
                 "icon": "🇺🇸",
                 "badgeText": "Static • 3 références",
                 "products": [
                     {
                         "id": "humboldt-grape-gas",
-                        "name": "Grape Gas",
+                        "name": "GRAPE GAS 🍇⛽",
                         "flag": "🇺🇸",
-                        "farm": "HUMBOLDT",
+                        "farm": "Humboldt Hash 🥇⚠️",
                         "type": "Static",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Static · HUMBOLDT ",
+                        "image": "ProductGG.png",
+                        "video": "VideoGG.mp4",
+                        "description": "Sélection Static Premium · HUMBOLDT 🚀",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -519,13 +520,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "humboldt-red-bull",
-                        "name": "Red Bull",
+                        "name": "RED BULL 🥤🤯",
                         "flag": "🇺🇸",
-                        "farm": "HUMBOLDT",
+                        "farm": "Humboldt Hash 🥇⚠️",
                         "type": "Static",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Static · HUMBOLDT ",
+                        "image": "ProductRB.png",
+                        "video": "VideoRB.mov",
+                        "description": "Strain⬇️Static WHOLEPANT🚀\n Humboldt : Fait référence au comté de Humboldt en Californie, une région mondialement célèbre pour sa culture de cannabis de haute qualité (souvent associée à des banques de graines comme la Humboldt Seed Company\n\n SAVEUR ET ARÔME🧑‍🍳\n Si vous appréciez l'alliance de saveurs et d'arômes variés et distincts, Red Bull pourrait bien devenir votre nouvelle variété favorite. Son profil aromatique suffit à susciter la curiosité, mêlant des notes puissantes, herbacées et acides à des effluves rappelant la « skunk » et le citron.\n Dès la première bouffée, une véritable explosion de saveurs se produit en bouche. Vous percevrez immédiatement le goût du citron, accompagné des mêmes nuances herbacées, acides et typées « skunk » décelées à l'odeur. Une pointe d'épices vient également enrichir ce profil gustatif déjà complexe.\n\n EFFETS RED BULL 🥤🤯\n Sensation d'élévation✈️\n Concentration🧠\n Détente💆\n Red Bull confirme bien son caractère. Dès que les effets se manifestent, vous ressentez une détente palpable, suffisante pour apaiser un esprit préoccupé. Il procure également une euphorie notable, capable de dissiper la mauvaise humeur accumulée après une journée de travail difficile.\n Cependant, comme nous l'avons évoqué précédemment, Red Bull a aussi la capacité d'améliorer votre concentration, voire de stimuler votre créativité. Ces caractéristiques témoignent de la polyvalence de cette variété : vous pouvez l'utiliser aussi bien en travaillant la journée qu'en soirée, pour vous détendre avant de passer à la nuit.",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -536,13 +537,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "humboldt-purple-dream",
-                        "name": "Purple Dream",
+                        "name": "PURPLE DREAM ☂️",
                         "flag": "🇺🇸",
-                        "farm": "HUMBOLDT",
+                        "farm": "Humboldt Hash 🥇⚠️",
                         "type": "Static",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Static · HUMBOLDT ",
+                        "image": "ProductPD.png",
+                        "video": "VideoPD.mov",
+                        "description": "Sélection Static Premium · HUMBOLDT 🚀",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -555,19 +556,30 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             {
                 "id": "sifty-kreme",
-                "name": "SIFTY KREME",
-                "icon": "🌈",
+                "name": "SIFTY KREME ☄️🔥🇺🇸",
+                "icon": "🇺🇸",
                 "badgeText": "Mix • 1 référence",
                 "products": [
                     {
                         "id": "sifty-five-strains",
-                        "name": "Mix 5 Strains",
-                        "flag": "🌈",
-                        "farm": "SIFTY KREME",
+                        "name": "Mix 5 Strains 💠",
+                        "flag": "🇺🇸",
+                        "farm": "SIFTY KREME ☄️🔥🇺🇸",
                         "type": "Mix",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "5 variétés dans un format de 5g : Papaya, Super Buff Cherry, Banana Punch, Trop Cherry et Pie Hoe.",
+                        "image": "Product5S.png",
+                        "videos":[ "Video5S.mp4", "Video5S2.mov"],
+                        "description": `Whole Plante Static 
+Strain✅⬇️
+Pie Hoe🔥
+Banana Punch🍌
+Trop Cherry🍒
+Papaya🥭
+Super buff Cherry🍒🔥
+Produit Rare💠
+La Team on vous présente une fusion explosive un changement de couleur 👀
+5 strain réunie en 1 pour vous faire déguste les meilleure saveur et meilleur sensation possible exclusivité 
+Quantité Limité ⚠️
+Les meilleurs h du monde 🌎🧤🏆`,
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -591,19 +603,19 @@ document.addEventListener('DOMContentLoaded', function () {
         "farms": [
             {
                 "id": "cali-topshelf",
-                "name": "CALI TOPSHELF BAGS",
+                "name": "CALI TOPSHELF BAGS 🎒",
                 "icon": "🇺🇸",
                 "badgeText": "Bags • 2 références",
                 "products": [
                     {
                         "id": "cali-bolo-runtz",
-                        "name": "Bolo Runtz",
+                        "name": "Bolo Runtz 🌸",
                         "flag": "🇺🇸",
-                        "farm": "CALI TOPSHELF BAGS",
+                        "farm": "CALI TOPSHELF BAGS 🎒",
                         "type": "Bags",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Bags · CALI TOPSHELF BAGS ",
+                        "image": "ProductBR.png",
+                        "video": "VideoBR.mp4",
+                        "description": "Fleur 🌸 californienne \n Top shelf bags de la farm Trapnumberz 🔢🍭\n 2 goût incroyable a votre disposition la Bolo runtz et la Melted cherries. 🧨🥳\n Elle vous laissera un goût en bouche sucrer 🍭 et bien us 🇺🇸 \n Goût et défonce 10/10 🙌🏆 ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -614,13 +626,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "cali-melted-cherries",
-                        "name": "Melted Cherries",
+                        "name": "Melted Cherries 🍒",
                         "flag": "🇺🇸",
-                        "farm": "CALI TOPSHELF BAGS",
+                        "farm": "CALI TOPSHELF BAGS 🎒",
                         "type": "Bags",
-                        "image": "Original68_Fond.jpg",
-                        "video": "",
-                        "description": "Sélection Bags · CALI TOPSHELF BAGS ",
+                        "image": "ProductMC.png",
+                        "video": "VideoMC.mov",
+                        "description": "Fleur 🌸 californienne \n Top shelf bags de la farm Trapnumberz 🔢🍭\n 2 goût incroyable a votre disposition la Bolo runtz et la Melted cherries. 🧨🥳\n Elle vous laissera un goût en bouche sucrer 🍭 et bien us 🇺🇸 \n Goût et défonce 10/10 🙌🏆 ",
                         "promoEligible": false,
                         "tarifs": [
                             {
@@ -658,7 +670,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- VARIABLES D'ÉTAT ---
     let cart = [];
-    let currentFilters = { searchTerm: '', quality: 'all', farm: 'all' };
+    let currentFilters = { searchTerm: '', quality: 'all', type: 'all' };
     
     // NAVIGATION ETAT (Logique Pistachio)
     let currentView = 'categories'; // 'categories', 'farms' (sous-cat), 'simple_products' (direct), 'products' (via farm)
@@ -677,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterContainer = document.querySelector('.filters');
     const searchFilterWrapper = document.getElementById('search-filter').parentElement;
     const qualityFilterWrapper = document.getElementById('quality-filter').parentElement;
-    const farmFilterWrapper = document.getElementById('farm-filter').parentElement;
+    const typeFilterWrapper = document.getElementById('farm-filter').parentElement;
 
     const escapeHtml = (v) => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;', "'":'&#39;'}[c]));
 
@@ -729,7 +741,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentView === 'categories') {
             renderCategoryList();
             searchFilterWrapper.style.display = 'none';
-            farmFilterWrapper.style.display = 'none';
+            typeFilterWrapper.style.display = 'none';
             qualityFilterWrapper.style.display = 'flex';
             productListContainer.style.gridTemplateColumns = 'repeat(1, 1fr)';
 
@@ -737,7 +749,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (currentView === 'farms') {
             renderFarmList(currentCategoryId); // Affiche la liste Frozen/Static...
             searchFilterWrapper.style.display = 'none';
-            farmFilterWrapper.style.display = 'none';
+            typeFilterWrapper.style.display = 'none';
             qualityFilterWrapper.style.display = 'none';
             productListContainer.style.gridTemplateColumns = 'repeat(1, 1fr)'; // Liste verticale
 
@@ -749,7 +761,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (currentView === 'simple_products') {
             renderProductListSimple(currentCategoryId);
             searchFilterWrapper.style.display = 'flex';
-            farmFilterWrapper.style.display = 'flex';
+            typeFilterWrapper.style.display = 'flex';
             qualityFilterWrapper.style.display = 'none';
             productListContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
 
@@ -760,7 +772,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (currentView === 'products') {
             renderProductList(currentCategoryId, currentFarmId);
             searchFilterWrapper.style.display = 'flex';
-            farmFilterWrapper.style.display = 'flex';
+            typeFilterWrapper.style.display = 'flex';
             qualityFilterWrapper.style.display = 'none';
             productListContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
 
@@ -862,31 +874,91 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // RENDER PRODUITS DIRECTS (Pour Edibles)
+    // --- TYPES DE PRODUITS : regroupement automatique dans chaque farm ---
+    // Les libellés sont ceux indiqués dans product.type (y compris les emojis).
+    function groupProductsByType(products) {
+        const groups = new Map();
+        products.forEach(product => {
+            const type = String(product.type || 'Autres').trim() || 'Autres';
+            if (!groups.has(type)) groups.set(type, []);
+            groups.get(type).push(product);
+        });
+        return groups;
+    }
+
+    // Le sélecteur existant #farm-filter devient un filtre de TYPE,
+    // sans changer l'emplacement du sélecteur dans l'ancienne interface.
+    function updateTypeSelect(products) {
+        const typeSelect = document.getElementById('farm-filter');
+        if (!typeSelect) return;
+        const groups = groupProductsByType(products);
+        if (currentFilters.type !== 'all' && !groups.has(currentFilters.type)) {
+            currentFilters.type = 'all';
+        }
+
+        typeSelect.replaceChildren();
+        const allOption = document.createElement('option');
+        allOption.value = 'all';
+        allOption.textContent = `🔎 TOUS LES TYPES (${products.length})`;
+        typeSelect.appendChild(allOption);
+        groups.forEach((items, type) => {
+            const option = document.createElement('option');
+            option.value = type;
+            option.textContent = `${type} (${items.length})`;
+            typeSelect.appendChild(option);
+        });
+        typeSelect.value = currentFilters.type;
+    }
+
+    function renderGroupedProducts(products) {
+        productListContainer.innerHTML = '';
+        if (!products.length) {
+            productListContainer.innerHTML = '<p class="no-results">Aucun produit pour ce type.</p>';
+            return;
+        }
+
+        groupProductsByType(products).forEach((items, type) => {
+            const heading = document.createElement('div');
+            heading.className = 'original68-type-heading';
+            heading.innerHTML = `
+                <span class="original68-type-name">${escapeHtml(type)}</span>
+                <span class="original68-type-count">${items.length} produit${items.length > 1 ? 's' : ''}</span>`;
+            productListContainer.appendChild(heading);
+            renderProductCards(items);
+        });
+    }
+
+    // Produits directs éventuels : même comportement que les farms.
     function renderProductListSimple(categoryId) {
         const category = appData.find(c => c.id === categoryId);
         if (!category || !category.products) return;
-
+        updateTypeSelect(category.products);
+        const term = currentFilters.searchTerm.trim().toLocaleLowerCase('fr-FR');
         const filteredProducts = category.products.filter(product => {
-            return product.name.toLowerCase().includes(currentFilters.searchTerm.toLowerCase());
+            const matchesType = currentFilters.type === 'all' || String(product.type || 'Autres').trim() === currentFilters.type;
+            const matchesSearch = !term || product.name.toLocaleLowerCase('fr-FR').includes(term) ||
+                String(product.type || '').toLocaleLowerCase('fr-FR').includes(term);
+            return matchesType && matchesSearch;
         });
-
-        productListContainer.innerHTML = '';
-        renderProductCards(filteredProducts);
+        renderGroupedProducts(filteredProducts);
     }
 
-    // RENDER PRODUITS VIA SOUS-CAT (Pour Hash/Weed)
+    // À l'ouverture d'une farm : afficher Frozen / Static / etc. en sections distinctes.
     function renderProductList(categoryId, farmId) {
         const category = appData.find(c => c.id === categoryId);
-        const farm = category.farms.find(f => f.id === farmId);
+        const farm = category?.farms?.find(f => f.id === farmId);
         if (!farm) return;
+        updateTypeSelect(farm.products);
 
+        const term = currentFilters.searchTerm.trim().toLocaleLowerCase('fr-FR');
         const filteredProducts = farm.products.filter(product => {
-            return product.name.toLowerCase().includes(currentFilters.searchTerm.toLowerCase());
+            const type = String(product.type || 'Autres').trim();
+            const matchesType = currentFilters.type === 'all' || type === currentFilters.type;
+            const matchesSearch = !term || product.name.toLocaleLowerCase('fr-FR').includes(term) ||
+                type.toLocaleLowerCase('fr-FR').includes(term);
+            return matchesType && matchesSearch;
         });
-
-        productListContainer.innerHTML = '';
-        renderProductCards(filteredProducts);
+        renderGroupedProducts(filteredProducts);
     }
 
     // Helper pour générer les cartes produits
@@ -906,10 +978,106 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="info">
                     <div class="name">${product.name} ${flagHTML}</div>
                     <div class="farm">${product.farm}</div>
-                    <div class="price">${product.tarifs[0].price.toFixed(2)}€</div>
+                    <div class="price ${product.outOfStock ? 'original68-stock-price' : ''}">${product.outOfStock ? '⛔ RUPTURE DE STOCK' : `${product.tarifs[0].price.toFixed(2)}€`}</div>
                 </div>`;
             productListContainer.appendChild(card);
         });
+    }
+
+    // --- MÉDIAS PRODUIT : plusieurs vidéos avec flèches, points et swipe ---
+    // Styles injectés ici pour fonctionner sans modifier index.html.
+    const original68MediaStyle = document.createElement('style');
+    original68MediaStyle.textContent = `
+        .original68-media-nav { display:flex; justify-content:center; align-items:center; gap:16px; margin:13px auto 6px; max-width:360px; }
+        .original68-media-arrow { width:42px; height:42px; border-radius:50%; border:1px solid #a978f0; background:rgba(37,22,57,.93); color:#fff; font-size:24px; cursor:pointer; }
+        .original68-media-arrow:active { transform:scale(.94); }
+        .original68-media-position { min-width:90px; text-align:center; font-weight:700; font-size:14px; color:#e7d4ff; }
+        .original68-media-dots { display:flex; justify-content:center; align-items:center; gap:8px; margin:0 auto 8px; }
+        .original68-media-dot { width:10px; height:10px; border:0; border-radius:50%; background:#655079; padding:0; cursor:pointer; }
+        .original68-media-dot.active { background:#b985ff; box-shadow:0 0 8px #b985ff; }
+        .original68-stock-label { width:92%; text-align:center; font-size:12px; font-weight:800; color:#fff; padding:10px 4px; border:1px solid #c95580; border-radius:8px; background:linear-gradient(145deg,#862047,#3d1536); box-sizing:border-box; }
+        .original68-stock-price { color:#ffb4d0 !important; font-weight:800; letter-spacing:.3px; }
+    `;
+    document.head.appendChild(original68MediaStyle);
+
+    function renderProductMedia(product) {
+        const video = document.querySelector('#page-product .product-video');
+        if (!video) return;
+        // Rétrocompatible : video:"..." pour tous les autres produits.
+        const allVideos = Array.isArray(product.videos) && product.videos.length
+            ? product.videos.filter(src => typeof src === 'string' && src.trim())
+            : (product.video ? [product.video] : []);
+
+        const previousNav = document.getElementById('original68-product-media-nav');
+        if (previousNav) previousNav.remove();
+        const previousDots = document.getElementById('original68-product-media-dots');
+        if (previousDots) previousDots.remove();
+
+        video.pause();
+        video.poster = product.image || '';
+        video.controls = allVideos.length > 0;
+        video.preload = 'metadata';
+        video.ontouchstart = null;
+        video.ontouchend = null;
+        video.onkeydown = null;
+        if (allVideos.length === 0) {
+            video.removeAttribute('src');
+            video.load();
+            return;
+        }
+
+        let activeIndex = 0;
+        let nav = null;
+        let dots = null;
+        const selectVideo = (index) => {
+            activeIndex = (index + allVideos.length) % allVideos.length;
+            video.pause();
+            video.src = allVideos[activeIndex];
+            video.load();
+            if (nav) nav.querySelector('.original68-media-position').textContent = `VIDÉO ${activeIndex + 1} / ${allVideos.length}`;
+            if (dots) dots.querySelectorAll('.original68-media-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === activeIndex);
+                dot.setAttribute('aria-pressed', String(i === activeIndex));
+            });
+        };
+
+        if (allVideos.length > 1) {
+            nav = document.createElement('div');
+            nav.id = 'original68-product-media-nav';
+            nav.className = 'original68-media-nav';
+            nav.innerHTML = `<button class="original68-media-arrow" type="button" data-step="-1" aria-label="Vidéo précédente">‹</button>
+                <span class="original68-media-position"></span>
+                <button class="original68-media-arrow" type="button" data-step="1" aria-label="Vidéo suivante">›</button>`;
+            nav.addEventListener('click', (event) => {
+                const btn = event.target.closest('button[data-step]');
+                if (btn) selectVideo(activeIndex + Number(btn.dataset.step));
+            });
+            video.insertAdjacentElement('afterend', nav);
+
+            dots = document.createElement('div');
+            dots.id = 'original68-product-media-dots';
+            dots.className = 'original68-media-dots';
+            dots.innerHTML = allVideos.map((_, i) => `<button type="button" class="original68-media-dot" data-index="${i}" aria-label="Afficher vidéo ${i + 1}"></button>`).join('');
+            dots.addEventListener('click', (event) => {
+                const btn = event.target.closest('button[data-index]');
+                if (btn) selectVideo(Number(btn.dataset.index));
+            });
+            nav.insertAdjacentElement('afterend', dots);
+
+            let startX = 0;
+            video.ontouchstart = (event) => { startX = event.changedTouches[0]?.screenX || 0; };
+            video.ontouchend = (event) => {
+                const dx = (event.changedTouches[0]?.screenX || 0) - startX;
+                if (Math.abs(dx) > 55) selectVideo(activeIndex + (dx < 0 ? 1 : -1));
+            };
+            video.onkeydown = (event) => {
+                if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    selectVideo(activeIndex + (event.key === 'ArrowRight' ? 1 : -1));
+                }
+            };
+        }
+        selectVideo(0);
     }
 
     // --- PAGE PRODUIT ---
@@ -917,14 +1085,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const product = getProductById(productId);
         if (!product) return;
 
-        const videoElement = document.querySelector('#page-product .product-video');
-        if(videoElement) {
-             if (product.video) videoElement.src = product.video;
-             else videoElement.removeAttribute('src');
-             videoElement.poster = product.image;
-             videoElement.controls = Boolean(product.video);
-             videoElement.load();
-        }
+        renderProductMedia(product);
 
         document.getElementById('product-page-title').innerText = product.name;
         const detailsContainer = document.getElementById('product-details-content');
@@ -935,9 +1096,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="tarif-wieght">${tarif.weight}</div>
                 <div class="tarif-price">${tarif.price.toFixed(2)}€</div>
             </div>
-            <button class="add-to-cart-btn" data-product-id="${product.id}" data-weight="${tarif.weight}" data-price="${tarif.price}">
-                <svg width="20" height="20"><use href="#icon-cart"/></svg>
-            </button>
+            ${product.outOfStock
+                ? `<span class="original68-stock-label" role="status">⛔ RUPTURE DE STOCK</span>`
+                : `<button class="add-to-cart-btn" data-product-id="${product.id}" data-weight="${tarif.weight}" data-price="${tarif.price}" aria-label="Ajouter au panier">
+                       <svg width="20" height="20"><use href="#icon-cart"/></svg>
+                   </button>`}
         </div>`).join('');
 
        // --- DANS TA FONCTION renderProductPage ---
@@ -1049,7 +1212,6 @@ ${product.description ? `<div class="product-description">${product.description}
         const linksContainer = document.getElementById('contact-links-container');
         linksContainer.innerHTML = contactLinks.map(link => `
         <a href="${link.url}" class="contact-link ${link.className}" target="_blank">
-            <svg width="24" height="24"><use href="${link.icon}"/></svg>
             <span>${link.text}</span>
         </a>`).join('');
     }
@@ -1063,66 +1225,40 @@ ${product.description ? `<div class="product-description">${product.description}
         });
     }
 
- // --- FILTRES (CORRIGÉ) ---
+ // --- FILTRES (CATÉGORIE À L'ACCUEIL / TYPE DANS UNE FARM) ---
  function populateFilters() {
     const searchFilter = document.getElementById('search-filter');
     const qualityFilter = document.getElementById('quality-filter');
-    const farmFilter = document.getElementById('farm-filter');
+    const typeFilter = document.getElementById('farm-filter');
 
-    // 1. On rassemble tous les produits pour trouver toutes les "Farms" existantes
-    const allNestedProducts = [];
-    appData.forEach(category => {
-        if (category.farms) {
-            // Si sous-catégories
-            category.farms.forEach(subCat => allNestedProducts.push(...subCat.products));
-        } else if (category.products) {
-            // Si produits directs
-            allNestedProducts.push(...category.products);
-        }
-    });
-
-    // 2. Remplissage du SELECT "QUALITÉ" (Pour filtrer les Catégories sur l'accueil)
-    // On récupère la propriété "quality" de chaque catégorie dans appData
-    const categoryQualities = appData.map(c => c.quality).filter(Boolean); 
-    // On enlève les doublons
-    const qualities = ['all', ...new Set(categoryQualities)];
-
+    const qualities = ['all', ...new Set(appData.map(category => category.quality).filter(Boolean))];
     if (qualityFilter) {
-        qualityFilter.innerHTML = qualities.map(q => 
-            `<option value="${q}">${q === 'all' ? '🔍 FILTRER CATÉGORIE' : q}</option>`
+        qualityFilter.innerHTML = qualities.map(q =>
+            `<option value="${escapeHtml(q)}">${q === 'all' ? '🔍 FILTRER CATÉGORIE' : escapeHtml(q)}</option>`
         ).join('');
-
-        // Action quand on change la qualité
-        qualityFilter.addEventListener('change', (e) => {
+        qualityFilter.addEventListener('change', e => {
             currentFilters.quality = e.target.value;
             renderHomePage();
         });
     }
 
-    // 3. Remplissage du SELECT "FARM" (Pour filtrer les Produits)
-    const productFarms = allNestedProducts.map(p => p.farm).filter(Boolean);
-    const farms = ['all', ...new Set(productFarms)];
-
-    if (farmFilter) {
-        farmFilter.innerHTML = farms.map(f => 
-            `<option value="${f}">${f === 'all' ? '👨‍🌾 TOUTES les Farms' : f}</option>`
-        ).join('');
-
-        // Action quand on change la farm
-        farmFilter.addEventListener('change', (e) => {
-            currentFilters.farm = e.target.value;
-            renderHomePage();
+    // Les choix sont mis à jour pour la farm ouverte dans updateTypeSelect().
+    if (typeFilter) {
+        typeFilter.addEventListener('change', e => {
+            currentFilters.type = e.target.value;
+            if (currentView === 'products' || currentView === 'simple_products') {
+                renderHomePage();
+            }
         });
     }
 
-    // 4. Action de la barre de recherche
     if (searchFilter) {
-        searchFilter.addEventListener('input', (e) => {
+        searchFilter.addEventListener('input', e => {
             currentFilters.searchTerm = e.target.value;
             renderHomePage();
         });
     }
-}
+ }
 
     let notificationTimeout;
     function showNotification(message) {
@@ -1142,6 +1278,10 @@ ${product.description ? `<div class="product-description">${product.description}
         const cartItemId = `${productId}-${weight}`;
         const existingItem = cart.find(item => item.id === cartItemId);
         const product = getProductById(productId);
+        if (!product || product.outOfStock) {
+            showNotification('⛔ Produit en rupture de stock.');
+            return;
+        }
 
         if (existingItem) {
             existingItem.quantity++;
@@ -1226,6 +1366,7 @@ ${product.description ? `<div class="product-description">${product.description}
                 currentView = 'categories';
                 currentCategoryId = null;
                 currentFarmId = null;
+                currentFilters.type = 'all';
                 currentFilters.searchTerm = '';
                 document.getElementById('search-filter').value = '';
                 renderHomePage();
@@ -1246,10 +1387,12 @@ ${product.description ? `<div class="product-description">${product.description}
                 // Si produits directs (Edibles, Extract)
                 currentView = 'simple_products';
                 currentCategoryId = category.id;
+                currentFilters.type = 'all';
             } else if (category.farms) {
                 // Si sous-catégories (Hash, Weed)
                 currentView = 'farms';
                 currentCategoryId = category.id;
+                currentFilters.type = 'all';
             }
             currentFilters.searchTerm = '';
             document.getElementById('search-filter').value = '';
@@ -1262,6 +1405,7 @@ ${product.description ? `<div class="product-description">${product.description}
         if (farmBtn) {
             currentView = 'products';
             currentFarmId = farmBtn.dataset.farmId;
+            currentFilters.type = 'all';
             currentFilters.searchTerm = '';
             document.getElementById('search-filter').value = '';
             renderHomePage();
@@ -1272,6 +1416,7 @@ ${product.description ? `<div class="product-description">${product.description}
         if (target.closest('.back-to-categories-btn')) {
             currentView = 'categories';
             currentCategoryId = null;
+            currentFilters.type = 'all';
             currentFilters.searchTerm = '';
             document.getElementById('search-filter').value = '';
             renderHomePage();
@@ -1282,6 +1427,7 @@ ${product.description ? `<div class="product-description">${product.description}
         if (target.closest('.back-to-farms-btn')) {
             currentView = 'farms';
             currentFarmId = null;
+            currentFilters.type = 'all';
             currentFilters.searchTerm = '';
             document.getElementById('search-filter').value = '';
             renderHomePage();
