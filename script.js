@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
   // Dans chaque produit : tarifs: [{ weight:'1g', price:20 }, ...]
   const appData = [
     {
-        "id": "HASH",
-        "name": "HASH",
-        "quality": "HASH",
+        "id": "RESINE",
+        "name": "RESINE",
+        "quality": "RESINE",
         "image": "Original68_Fond.jpg",
         "icon": "🍫",
         "productCount": 24,
@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "products": [
                     {
                         "id": "nova-ff-tangie-mandarine",
+                        "outOfStock": true, // Produit indisponible : aucune commande possible
                         "name": "Tangie Mandarine 🍊🌊",
                         "flag": "🇲🇦",
                         "farm": "NOVA ⭕️🔱 🫆",
@@ -593,9 +594,9 @@ Les meilleurs h du monde 🌎🧤🏆`,
         ]
     },
     {
-        "id": "WEED",
-        "name": "WEED",
-        "quality": "WEED",
+        "id": "Fleure Californienne",
+        "name": "Fleure Californienne",
+        "quality": "Fleure Californienne",
         "image": "Original68_Fond.jpg",
         "icon": "🌿",
         "productCount": 2,
