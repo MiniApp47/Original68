@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     {
                         "id": "anonymuz-tropic-guavana",
                         "name": "Tropic Guavana 🥭",
+                                                "outOfStock": true, // Produit indisponible : aucune commande possible
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                         "type": "Fresh Frozen 🧊",
@@ -326,7 +327,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "anonymuz-ice-cream-cake-grape-gas",
-                        "outOfStock": true, // Produit indisponible : aucune commande possible
                         "name": "Ice Cream Cake X Grape Gas 🍧",
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
@@ -344,7 +344,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     },
                     {
                         "id": "anonymuz-Tropicali",
-                        "outOfStock": true, // Produit indisponible : aucune commande possible
                         "name": "TropiCookies 🐲",
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
@@ -471,7 +470,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "id": "liquid-farm",
                 "name": "LIQUID FARM 🔱🇺🇸🥷",
                 "icon": "🇺🇸",
-                "badgeText": "Wpff • 2 références",
+                "badgeText": "Wpff • 3 références",
                 "products": [
                     {
                         "id": "liquid-Gas Light 💡",
