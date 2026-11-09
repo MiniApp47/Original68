@@ -204,16 +204,50 @@ document.addEventListener('DOMContentLoaded', function () {
                 "id": "anonymuz",
                 "name": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                 "icon": "🪐",
-                "badgeText": "FFS / 120µ • 5 références",
+                "badgeText": "SS / FFS / 120µ • 8 références",
                 "products": [
+                    {
+                        "id": "tropicali",
+                        "name": "Tropicali 🌵",
+                        "flag": "🇲🇦",
+                        "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
+                        "type": "Sultan Static ⚡",
+                        "image": "ProductTP.png",
+                        "video": "VideoTP.mov",
+                        "description": "",
+                        "promoEligible": false,
+                        "tarifs": [
+                            {
+                                "weight": "2g",
+                                "price": 50
+                            }
+                        ]
+                    },
+                    {
+                        "id": "Tangie",
+                        "name": "Tangie 🍊",
+                        "flag": "🇲🇦",
+                        "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
+                        "type": "Sultan Static ⚡",
+                        "image": "ProductTG.png",
+                        "video": "VideoTG.mov",
+                        "description": "",
+                        "promoEligible": false,
+                        "tarifs": [
+                           {
+                                "weight": "2g",
+                                "price": 50
+                            }
+                        ]
+                    },
                     {
                         "id": "anonymuz-tropicali",
                         "name": "Tropicali 🏝️🍹",
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
-                        "type": "FFS",
-                        "image": "ProductAN.png",
-                        "video": "VideoAN.mov",
+                        "type": "Fresh Frozen 🧊",
+                        "image": "ProductTI.png",
+                        "video": "VideoTI.mov",
                         "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
                         "promoEligible": false,
                         "tarifs": [
@@ -232,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         "name": "Tropic Guavana 🥭",
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
-                        "type": "FFS",
+                        "type": "Fresh Frozen 🧊",
                         "image": "ProductAN.png",
                         "video": "VideoAN.mov",
                         "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
@@ -253,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         "name": "Tropic Cherry 🍒",
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
-                        "type": "FFS",
+                        "type": "Fresh Frozen 🧊",
                         "image": "ProductAN.png",
                         "video": "VideoAN.mov",
                         "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
@@ -274,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         "name": "White Tropicali 🍍",
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
-                        "type": "FFS",
+                        "type": "Fresh Frozen 🧊",
                         "image": "ProductAN.png",
                         "video": "VideoAN.mov",
                         "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
@@ -297,8 +331,26 @@ document.addEventListener('DOMContentLoaded', function () {
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                         "type": "120µ",
-                        "image": "ProductAN.png",
-                        "video": "VideoAN.mov",
+                        "image": "ProductIC.png",
+                        "video": "VideoIC.mov",
+                        "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
+                        "promoEligible": false,
+                        "tarifs": [
+                            {
+                                "weight": "2g",
+                                "price": 30
+                            }
+                        ]
+                    },
+                    {
+                        "id": "anonymuz-Tropicali",
+                        "outOfStock": true, // Produit indisponible : aucune commande possible
+                        "name": "TropiCookies 🐲",
+                        "flag": "🇲🇦",
+                        "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
+                        "type": "120µ",
+                        "image": "ProductTC.png",
+                        "video": "VideoTC.mov",
                         "description": "Laisser vous emporter par la magie d Anonymuz Hash Forger en enfer 🧞‍♂️🧞‍♀️conçu pour vous libérer du stress il apportera de la créativité 💭🤔vous amènera dans des moments d’euphorie🤯🤣 une sensation de liberté s installera en vous une agréable façon de se detendre et de se sentir léger dès la premier inhalation \n Pour les saveur c un régale pour les papilles 👅les strain son très représentatif de leur arômes unique conçu par un chef étoilé ⭐️🧑‍🍳10/10🏆 \n Je vous laisse déguste et découvrir la magie d Anonymuz par vous même 🧙👿 ",
                         "promoEligible": false,
                         "tarifs": [
@@ -421,6 +473,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 "icon": "🇺🇸",
                 "badgeText": "Wpff • 2 références",
                 "products": [
+                    {
+                        "id": "liquid-Gas Light 💡",
+                        "name": "Gas Light 💡",
+                        "flag": "🇺🇸",
+                        "farm": "LIQUID 🔱🇺🇸🥷",
+                        "type": "Wpff",
+                        "image": "ProductGL.png",
+                        "video": "VideoGL.mov",
+                        "description": "Nouveau Drop Liquid Farms Wpff🔱🇺🇸🥷\n Un Wpff rincé par un expert pour vous faire le meilleur Wpff possible c est du beurre 🧈 tout simplement les amis après inhalation les effets son magique 🧙 vous passerez un agréable moment sur votre petit nuage ☁️ qui vous transportera sur L.A🇺🇸.\n Le Produit qui parle à ma place ‼️\n Rapport Qualité Prix 🥇 \n Quantité Limité ⚠️ ",
+                        "promoEligible": false,
+                        "tarifs": [
+                            {
+                                "weight": "1g",
+                                "price": 30
+                            }
+                        ]
+                    },
                     {
                         "id": "liquid-papaya",
                         "name": "Papaya 🥭",
