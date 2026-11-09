@@ -318,6 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 "products": [
                     {
                         "id": "paradise-pikachu-peach",
+                        "outOfStock": true, 
                         "name": "Pikachu Peach ⚡🍑",
                         "flag": "🇮🇹",
                         "farm": "PARADISE VALLEY 🇮🇹🇲🇦",
