@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     {
                         "id": "anonymuz-tropic-guavana",
                         "name": "Tropic Guavana 🥭",
-                                                "outOfStock": true, // Produit indisponible : aucune commande possible
+                        "outOfStock": true, // Produit indisponible : aucune commande possible
                         "flag": "🇲🇦",
                         "farm": "ANONYMUZ FARMZ 🧙🧞‍♂️",
                         "type": "Fresh Frozen 🧊",
@@ -745,7 +745,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
     let currentFilters = { searchTerm: '', quality: 'all', type: 'all' };
     
     // NAVIGATION ETAT (Logique Pistachio)
-    let currentView = 'categories'; // 'categories', 'farms' (sous-cat), 'simple_products' (direct), 'products' (via farm)
+    let currentView = 'discovery'; // 'categories', 'farms' (sous-cat), 'simple_products' (direct), 'products' (via farm)
     let currentCategoryId = null;
     let currentFarmId = null;
     let appliedPromo = null;
@@ -765,6 +765,149 @@ Les meilleurs h du monde 🌎🧤🏆`,
 
     const escapeHtml = (v) => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;', "'":'&#39;'}[c]));
 
+    // Accueil façon mini-app de la vidéo : farms d'abord, catalogue en sections ensuite.
+    let discoveryCategory = 'ALL';
+    let discoveryFarm = 'ALL';
+    let discoverySearch = '';
+    let discoverySort = 'default';
+    let discoveryAvailableOnly = false;
+    const discoveryAllFarms = appData.flatMap(category =>
+        (category.farms || []).map(farm => ({ ...farm, categoryId:category.id })));
+    const discoveryAllProducts = discoveryAllFarms.flatMap(farm =>
+        (farm.products || []).map(product => ({ product, farm })));
+    const discoveryLogos = (farm) => farmLogoImages[farm.id] || '';
+    const discoveryFarmVisual = (farm, extraClass = '') => {
+        const url = discoveryLogos(farm);
+        return url ? `<img class="${extraClass}" src="${escapeHtml(url)}" alt="" loading="lazy" onerror="this.hidden=true">`
+            : `<span class="o68-farm-placeholder ${extraClass}">${escapeHtml(farmMonogram(farm.name))}</span>`;
+    };
+    // Animations de révélation au scroll (réduites si demandé par l’utilisateur).
+    let o68RevealObserver = null;
+    const o68ReduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function animateVisibleDiscovery() {
+        if (o68RevealObserver) { o68RevealObserver.disconnect(); o68RevealObserver = null; }
+        const list = document.querySelector('#page-home #product-list');
+        if (!list) return;
+        const els = [...list.querySelectorAll('.o68-farm-group-heading, .o68-product-card')];
+        if (o68ReduceMotion || !('IntersectionObserver' in window)) return;
+        o68RevealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('o68-is-visible');
+                    o68RevealObserver?.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.09, rootMargin: '0px 0px -5% 0px' });
+        let cardIndex = 0;
+        els.forEach(el => {
+            const heading = el.classList.contains('o68-farm-group-heading');
+            if (heading) cardIndex=0;
+            el.style.setProperty('--o68-reveal-delay', heading ? '0ms' : `${(cardIndex++ % 4) * 70}ms`);
+            el.classList.add('o68-will-reveal');
+            o68RevealObserver.observe(el);
+        });
+    }
+
+    function renderDiscovery() {
+        const totalProducts = discoveryAllProducts.length;
+        document.getElementById('o68-stat-products').textContent = totalProducts;
+        document.getElementById('o68-stat-farms').textContent = discoveryAllFarms.length;
+        const categoryTabs = document.getElementById('o68-category-tabs');
+        const categories = [{id:'ALL',name:'TOUT'}, ...appData.map(category => ({id:category.id, name:category.name}))];
+        categoryTabs.innerHTML = categories.map(c => `<button type="button" class="o68-category-tab ${c.id === discoveryCategory ? 'active' : ''}" data-discovery-category="${escapeHtml(c.id)}" aria-pressed="${c.id === discoveryCategory}">${c.id === 'ALL' ? '✦' : c.id === 'WEED' ? '◈' : '◆'} ${escapeHtml(c.name.length > 15 ? (c.name.toLowerCase().includes('californ') ? 'FLEURS CALI' : c.name.split(' ')[0]) : c.name)}</button>`).join('');
+        const filteredFarms = discoveryAllFarms.filter(f => discoveryCategory === 'ALL' || f.categoryId === discoveryCategory);
+        if (discoveryFarm !== 'ALL' && !filteredFarms.some(f => f.id === discoveryFarm)) discoveryFarm = 'ALL';
+        document.getElementById('o68-farm-count').textContent = `${filteredFarms.length} farms`;
+        document.getElementById('o68-farm-strip').innerHTML = [
+            `<button type="button" class="o68-farm-card ${discoveryFarm === 'ALL' ? 'active' : ''}" data-discovery-farm="ALL" aria-pressed="${discoveryFarm === 'ALL'}"><span class="o68-farm-placeholder">✦</span><strong>TOUTES LES FARMS</strong><small>Voir tout</small></button>`,
+            ...filteredFarms.map(f => `<button type="button" class="o68-farm-card ${discoveryFarm === f.id ? 'active' : ''}" data-discovery-farm="${escapeHtml(f.id)}" aria-pressed="${discoveryFarm === f.id}">${discoveryFarmVisual(f)}<strong>${escapeHtml(f.name)}</strong><small>${f.products.length} réf.</small></button>`)
+        ].join('');
+        const search = discoverySearch.toLocaleLowerCase('fr-FR');
+        const groups = filteredFarms.filter(f => discoveryFarm === 'ALL' || f.id === discoveryFarm).map(farm => {
+            let products = farm.products.filter(p => {
+                if (discoveryAvailableOnly && p.outOfStock) return false;
+                const haystack = `${p.name} ${p.type} ${p.farm} ${farm.name}`.toLocaleLowerCase('fr-FR');
+                return !search || haystack.includes(search);
+            });
+            if (discoverySort !== 'default') products = [...products].sort((a,b) => {
+                const pa = Math.min(...a.tarifs.map(t => Number(t.price)));
+                const pb = Math.min(...b.tarifs.map(t => Number(t.price)));
+                if (discoverySort === 'price-asc') return pa - pb;
+                if (discoverySort === 'price-desc') return pb - pa;
+                return a.name.localeCompare(b.name,'fr');
+            });
+            return {farm, products};
+        }).filter(g => g.products.length);
+        const count = groups.reduce((n,g) => n + g.products.length,0);
+        document.getElementById('o68-results-count').textContent = `${count} résultat${count>1?'s':''}`;
+        const target = document.getElementById('product-list');
+        if (!groups.length) { target.innerHTML = '<div class="o68-empty">Aucun produit trouvé. Modifie les filtres pour revoir le catalogue.</div>'; return; }
+        target.innerHTML = groups.map(({farm,products}) => {
+            const heading = `<div class="o68-farm-group-heading">${discoveryFarmVisual(farm)}<strong>${escapeHtml(farm.name)}</strong><small>${products.length} produit${products.length>1?'s':''}</small></div>`;
+            const cards = products.map(product => {
+                const minPrice = Math.min(...product.tarifs.map(t=>Number(t.price)));
+                const out = Boolean(product.outOfStock);
+                return `<article class="o68-product-card product-item-card" data-product-id="${escapeHtml(product.id)}" role="button" tabindex="0" aria-label="Voir ${escapeHtml(product.name)}">
+                    <div class="o68-product-media"><img src="${escapeHtml(product.image||'Original68_Logo.jpg')}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='Original68_Logo.jpg'">
+                        <span class="o68-product-badge ${out?'o68-sold-out':''}">${out?'INDISPONIBLE':'✦ SÉLECTION'}</span>
+                    </div>
+                    <div class="o68-product-body"><span class="o68-product-type">${escapeHtml(product.type||'Sélection')}</span><strong class="o68-product-title">${escapeHtml(product.name)}</strong>
+                        <div class="o68-product-farm">${escapeHtml(farm.name)}</div>
+                        <div class="o68-product-bottom"><strong class="o68-price ${out?'o68-sold-out-price':''}">${out?'RUPTURE':`Dès ${minPrice.toFixed(0)} €`}</strong><span class="o68-detail-btn">Voir ›</span></div>
+                    </div>
+                </article>`;
+            }).join('');
+            return heading + cards;
+        }).join('');
+        animateVisibleDiscovery();
+    }
+
+    function setupDiscoveryControls() {
+        document.getElementById('o68-category-tabs').addEventListener('click',e=>{
+            const btn=e.target.closest('[data-discovery-category]'); if(!btn)return;
+            discoveryCategory=btn.dataset.discoveryCategory; discoveryFarm='ALL'; renderDiscovery();
+        });
+        document.getElementById('o68-farm-strip').addEventListener('click',e=>{
+            const btn=e.target.closest('[data-discovery-farm]'); if(!btn)return;
+            discoveryFarm=btn.dataset.discoveryFarm;renderDiscovery();
+            document.querySelector('.o68-products-heading')?.scrollIntoView({behavior:'smooth',block:'start'});
+        });
+        const search=document.getElementById('o68-search');
+        search.addEventListener('input',e=>{discoverySearch=e.target.value;document.getElementById('o68-clear-search').hidden=!discoverySearch;renderDiscovery();});
+        document.getElementById('o68-clear-search').addEventListener('click',()=>{discoverySearch='';search.value='';document.getElementById('o68-clear-search').hidden=true;renderDiscovery();search.focus();});
+        document.getElementById('o68-sort').addEventListener('change',e=>{discoverySort=e.target.value;renderDiscovery();});
+        document.getElementById('o68-in-stock').addEventListener('change',e=>{discoveryAvailableOnly=e.target.checked;renderDiscovery();});
+        document.getElementById('nav-farms').addEventListener('click',()=>{currentView='discovery';showPage('page-home');renderDiscovery();document.getElementById('o68-farm-strip').scrollIntoView({behavior:'smooth',block:'center'});});
+        document.getElementById('product-list').addEventListener('keydown',e=>{
+            const card=e.target.closest('.product-item-card');
+            if (card && (e.key==='Enter'||e.key===' ')){e.preventDefault();renderProductPage(card.dataset.productId);}
+        });
+    }
+
+    // Musique West Coast instrumentale originale. Le son démarre uniquement après un clic.
+    function setupWestCoastPlayer() {
+        const tracks=[{title:'Pacific Sunset · G-Funk',src:'music/Pacific_Sunset.mp3'},{title:'Lowrider Boulevard · West Coast',src:'music/Lowrider_Boulevard.mp3'}];
+        const audio=document.getElementById('o68-audio');
+        const panel=document.getElementById('o68-music-panel');
+        const fab=document.getElementById('o68-music-fab');
+        const play=document.getElementById('o68-music-play');
+        const title=document.getElementById('o68-track-title');
+        let active=0;
+        audio.volume=.35;
+        function setTrack(i,keepPlaying=false){active=(i+tracks.length)%tracks.length;audio.src=tracks[active].src;title.textContent=tracks[active].title;if(keepPlaying)audio.play().catch(()=>{});}
+        function sync(){play.textContent=audio.paused?'▶':'❚❚';play.setAttribute('aria-label',audio.paused?'Lancer la musique':'Mettre en pause');document.getElementById('o68-playing-indicator').hidden=audio.paused;}
+        fab.addEventListener('click',()=>{panel.hidden=!panel.hidden;fab.setAttribute('aria-expanded',String(!panel.hidden));});
+        document.getElementById('o68-music-close').addEventListener('click',()=>{panel.hidden=true;fab.setAttribute('aria-expanded','false');});
+        play.addEventListener('click',()=>{if(audio.paused){audio.play().catch(()=>{title.textContent='Son indisponible · vérifie le dossier music';});}else audio.pause();});
+        document.getElementById('o68-music-next').addEventListener('click',()=>setTrack(active+1,!audio.paused));
+        document.getElementById('o68-music-prev').addEventListener('click',()=>setTrack(active-1,!audio.paused));
+        document.getElementById('o68-music-volume').addEventListener('input',e=>{audio.volume=Number(e.target.value)/100;});
+        document.querySelector('#page-product .product-video')?.addEventListener('play',()=>audio.pause());
+        audio.addEventListener('play',sync);audio.addEventListener('pause',sync);audio.addEventListener('error',()=>{if(!audio.getAttribute('src'))return;title.textContent='Fichier MP3 absent · dossier music';});
+        setTrack(0);sync();
+    }
+
+
     function getProductById(productId) {
         for (const category of appData) {
             if (category.products) {
@@ -782,6 +925,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
     }
 
     function showPage(pageId) {
+        if (pageId !== 'page-product') document.querySelector('#page-product .product-video')?.pause();
         pages.forEach(p => p.classList.remove('active'));
         const page = document.getElementById(pageId);
         if (page) page.classList.add('active');
@@ -793,14 +937,17 @@ Les meilleurs h du monde 🌎🧤🏆`,
         if(homeNav) homeNav.classList.remove('active');
         if(infoNav) infoNav.classList.remove('active');
         if(contactNav) contactNav.classList.remove('active');
+        document.getElementById('nav-cart')?.classList.remove('active');
 
         if (pageId === 'page-contact') contactNav.classList.add('active');
         else if (pageId === 'page-info') infoNav.classList.add('active');
+        else if (pageId === 'page-cart' || pageId === 'page-confirmation') document.getElementById('nav-cart')?.classList.add('active');
         else homeNav.classList.add('active');
     }
 
     // --- RENDER HOME (Logique Pistachio adaptée) ---
     function renderHomePage() {
+        if (currentView === 'discovery') { renderDiscovery(); return; }
         filterContainer.style.display = 'flex';
 
         // Nettoyage boutons retour
@@ -1435,7 +1582,7 @@ ${product.description ? `<div class="product-description">${product.description}
             if (!pageId) return;
             if (pageId === 'page-contact') renderContactPage();
             if (pageId === 'page-home') {
-                currentView = 'categories';
+                currentView = 'discovery';
                 currentCategoryId = null;
                 currentFarmId = null;
                 currentFilters.type = 'all';
@@ -1615,12 +1762,30 @@ ${product.description ? `<div class="product-description">${product.description}
     });
 
     function init() {
+        const loader = document.getElementById('page-loader');
+        let dismissed = false;
+        const closeLoader = () => {
+            if (dismissed) return;
+            dismissed = true;
+            loader?.classList.add('o68-loader-ready');
+            setTimeout(() => loader?.remove(), 850);
+        };
+        // Filet de sécurité pour ne jamais bloquer une mini-app sur le splash.
+        const safetyTimer = setTimeout(closeLoader, 5500);
         setTimeout(() => {
-            populateFilters();
-            renderHomePage();
-            updateCartCount();
-            showPage('page-home');
-        }, 1500);
+            try {
+                populateFilters();
+                setupDiscoveryControls();
+                setupWestCoastPlayer();
+                renderHomePage();
+                updateCartCount();
+                showPage('page-home');
+            } finally {
+                clearTimeout(safetyTimer);
+                // La mosaïque a le temps de former le logo avant la transition.
+                setTimeout(closeLoader, 700);
+            }
+        }, 1550);
     }
 
     init();
