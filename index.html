@@ -1434,8 +1434,8 @@
 /* === ORIGINAL68 / WEST COAST · RELOOKING INSPIRÉ DU CLIP FOURNI === */
 :root {--o68-gold:#ffc941;--o68-gold-soft:#e1b556;--o68-purple:#a674ef;--o68-ink:#070709;}
 html,body {background-color:#080809;color:#f9f2e9;scroll-behavior:smooth;}
-body {background-image:radial-gradient(circle at 15% 0,rgba(101,57,153,.22),transparent 40%),linear-gradient(#060508ed,#0b0910ed),url('Original68_Fond.jpg');padding-bottom:95px;}
-#page-home{background:linear-gradient(180deg,#09090bf0,#110d16 400px,#09080b 100%);max-width:780px;margin:0 auto;}
+body {background-image:radial-gradient(circle at 15% 0,rgba(101,57,153,.22),transparent 40%),linear-gradient(#060508ed,#0b0910ed),url('Fondecran.png');padding-bottom:95px;}
+#page-home{max-width:780px;margin:0 auto;}
 .o68-hero {height:314px;position:relative;isolation:isolate;background:#120d1b url('Original68_Fond.jpg') center 38% / cover no-repeat;overflow:hidden;border-bottom:1px solid #6b531f;}
 .o68-hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#0b0913ad 0%,#09070fe0 69%,#080709 100%),linear-gradient(100deg,#27134b80,#dba52a14);}
 .o68-hero-inner{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:20px 16px 23px;gap:6px;box-sizing:border-box;text-align:center;}
@@ -1496,7 +1496,19 @@ body {background-image:radial-gradient(circle at 15% 0,rgba(101,57,153,.22),tran
 .o68-bottom-nav .nav-item{width:100%;min-width:0;padding:5px 0 3px!important;display:flex;flex-direction:column;gap:1px;background:transparent!important;border:0;box-shadow:none!important;border-radius:12px;font-size:9px;position:relative;color:#9c8caa;}
 .o68-bottom-nav .nav-item.active{color:#f6c64c!important;background:#36281c88!important;}
 .o68-nav-icon{font-size:23px;font-weight:bold;line-height:26px;display:block;}
-.o68-bottom-nav .cart-count{position:absolute;top:0;right:12px;font-size:9px;line-height:15px;min-width:15px;border-radius:50%;background:#f4bf3f;color:#251900;}
+.o68-bottom-nav .cart-count{
+    position:absolute;
+    top:0;
+    right:12px;
+    font-size:9px;
+        width: 15px;
+    height: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius:50%;
+    background:#f4bf3f;
+    color:#251900;
+}
 .o68-music-player{position:fixed;right:14px;bottom:calc(81px + env(safe-area-inset-bottom));z-index:90;display:flex;align-items:flex-end;flex-direction:column;gap:9px;}
 #o68-music-fab{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#e6a826,#ffe171);border:1px solid #ffe393;box-shadow:0 6px 20px #c78a4e83;color:#160f06;font-size:27px;font-weight:900;cursor:pointer;position:relative;}
 #o68-playing-indicator{position:absolute;right:0;top:0;width:10px;height:10px;border-radius:50%;background:#38dd9a;border:2px solid #120c0f;}
@@ -1553,9 +1565,8 @@ html,body { background-color:#080615; color:#f8f7ff; }
 body {
  background-image:radial-gradient(circle at 14% 1%,rgba(89,45,200,.32),transparent 38%),
  radial-gradient(circle at 96% 43%,rgba(44,73,205,.14),transparent 45%),
- linear-gradient(#070514e9,#0b081be9),url('Original68_Fond.jpg');
+ linear-gradient(#070514e9,#0b081be9),url('Fondecran.png');
 }
-#page-home {background:linear-gradient(180deg,#0a071bf2,#15103c 420px,#09071d 100%);}
 .o68-hero {background-color:#0e0a2a;border-bottom-color:#6456c3;}
 .o68-hero-shade {background:linear-gradient(180deg,#0d093196 0%,#100b2bd9 64%,#0a081c 100%),
  linear-gradient(105deg,#31157775,#3253ff1b);}
@@ -2038,11 +2049,11 @@ body {
 
 
     <nav class="bottom-nav o68-bottom-nav" aria-label="Navigation principale">
-        <button id="nav-menu" data-page="page-home" class="nav-item active" type="button"><span class="o68-nav-icon">⌂</span><span>Accueil</span></button>
-        <button id="nav-farms" data-action="scroll-farms" class="nav-item" type="button"><span class="o68-nav-icon">◈</span><span>Farms</span></button>
-        <button id="nav-cart" data-page="page-cart" class="nav-item" type="button"><span class="o68-nav-icon">▣</span><span>Panier</span><span class="cart-count">0</span></button>
-        <button id="nav-info" data-page="page-info" class="nav-item" type="button"><span class="o68-nav-icon">ⓘ</span><span>Infos</span></button>
-        <button id="nav-contact" data-page="page-contact" class="nav-item" type="button"><span class="o68-nav-icon">✈</span><span>Contact</span></button>
+        <button id="nav-menu" data-page="page-home" class="nav-item active" type="button"><span class="o68-nav-icon">🏡</span><span>Accueil</span></button>
+        <button id="nav-farms" data-action="scroll-farms" class="nav-item" type="button"><span class="o68-nav-icon">👨‍🌾</span><span>Farms</span></button>
+        <button id="nav-cart" data-page="page-cart" class="nav-item" type="button"><span class="o68-nav-icon">🧺</span><span>Panier</span><span class="cart-count">0</span></button>
+        <button id="nav-info" data-page="page-info" class="nav-item" type="button"><span class="o68-nav-icon">ℹ️</span><span>Infos</span></button>
+        <button id="nav-contact" data-page="page-contact" class="nav-item" type="button"><span class="o68-nav-icon">📩</span><span>Contact</span></button>
     </nav>
 
     <div class="o68-music-player">
