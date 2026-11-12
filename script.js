@@ -680,6 +680,58 @@ Les meilleurs h du monde 🌎🧤🏆`,
       farmCount: 1,
       farms: [
         {
+          id: "Flower spain 🇪🇸",
+          name: "Flower spain 🇪🇸",
+          icon: "🇪🇸",
+          badgeText: "Bags • 2 références",
+          products: [
+            {
+              id: "OreoZ",
+              name: "OreoZ 🍪",
+              flag: "🇪🇸",
+              farm: "Flower spain 🇪🇸",
+              type: "Flower",
+              image: "ProductOZ.png",
+              video: "VideoOZ.mov",
+              description:
+                "",
+              promoEligible: false,
+              tarifs: [
+                {
+                  weight: "5g",
+                  price: 40,
+                },
+                {
+                  weight: "10g",
+                  price: 70,
+                },
+              ],
+            },
+            {
+              id: "Banana runtz",
+              name: "Banana runtz 🍌",
+              flag: "🇪🇸",
+              farm: "Flower spain 🇪🇸",
+              type: "Bags",
+              image: "ProductBRR.png",
+              video: "VideoBR.mov",
+              description:
+                "",
+              promoEligible: false,
+              tarifs: [
+                {
+                  weight: "5g",
+                  price: 40,
+                },
+                {
+                  weight: "10g",
+                  price: 70,
+                },
+              ],
+            },
+          ],
+        },
+        {
           id: "cali-topshelf",
           name: "CALI TOPSHELF BAGS 🎒",
           icon: "🇺🇸",
@@ -1006,73 +1058,127 @@ Les meilleurs h du monde 🌎🧤🏆`,
     });
   }
 
-  // Musique West Coast instrumentale originale. Le son démarre uniquement après un clic.
+  // WEST COAST RADIO — sélection visible sur la photo (4 titres), plus 2 instrumentaux.
+  // Titres commerciaux: lecture via l'intégration officielle Spotify (aucun MP3 copié).
+  // La lecture Spotify exige un clic dans son lecteur; le navigateur contrôle la disponibilité.
+  // Titres originaux du projet: lecture HTML audio depuis le dossier music/.
   function setupWestCoastPlayer() {
     const tracks = [
-      { title: "Pacific Sunset · G-Funk", src: "music/Pacific_Sunset.mp3" },
-      {
-        title: "Lowrider Boulevard · West Coast",
-        src: "music/Lowrider_Boulevard.mp3",
-      },
+      { artist: 'Dr. Dre', title: 'Nuthin\' But A "G" Thang', kind: 'spotify', spotifyId: '5Tbpp3OLLClPJF8t1DmrFD' },
+      { artist: 'Snoop Dogg', title: 'Gin and Juice', kind: 'spotify', spotifyId: '78woORB9AEjQnH08W8O2ne' },
+      { artist: 'Warren G feat. Nate Dogg', title: 'Regulate', kind: 'spotify', spotifyId: '1jsV2qNo1Y8r6rJ763KpdE' },
+      { artist: '2Pac', title: 'I Get Around', kind: 'spotify', spotifyId: '4voEoczU7Ijborps9XF1n3' },
+      { artist: 'ORIGINAL68', title: 'Pacific Sunset · G-Funk', kind: 'local', src: 'music/Pacific_Sunset.mp3' },
+      { artist: 'ORIGINAL68', title: 'Lowrider Boulevard · West Coast', kind: 'local', src: 'music/Lowrider_Boulevard.mp3' },
     ];
-    const audio = document.getElementById("o68-audio");
-    const panel = document.getElementById("o68-music-panel");
-    const fab = document.getElementById("o68-music-fab");
-    const play = document.getElementById("o68-music-play");
-    const title = document.getElementById("o68-track-title");
+    const audio = document.getElementById('o68-audio');
+    const panel = document.getElementById('o68-music-panel');
+    const fab = document.getElementById('o68-music-fab');
+    const play = document.getElementById('o68-music-play');
+    const title = document.getElementById('o68-track-title');
+    const iframe = document.getElementById('o68-spotify-embed');
+    const embedWrap = document.getElementById('o68-spotify-wrap');
+    const openSpotify = document.getElementById('o68-open-spotify');
+    const volumeWrapper = document.getElementById('o68-music-volume-wrap');
+    const trackList = document.getElementById('o68-playlist-tracks');
+    const status = document.getElementById('o68-playback-status');
     let active = 0;
     audio.volume = 0.35;
-    function setTrack(i, keepPlaying = false) {
-      active = (i + tracks.length) % tracks.length;
-      audio.src = tracks[active].src;
-      title.textContent = tracks[active].title;
-      if (keepPlaying) audio.play().catch(() => {});
-    }
+    audio.loop = false;
+
+    // Cette liste complète les pistes existantes, elle n'ajoute pas les 36 titres invisibles.
+    trackList.innerHTML = tracks.map((track, index) => {
+      const label = document.createElement('span');
+      label.textContent = track.title;
+      const artist = document.createElement('small');
+      artist.textContent = track.artist;
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'o68-playlist-song';
+      item.dataset.trackIndex = String(index);
+      item.setAttribute('aria-label', `Sélectionner ${track.title} — ${track.artist}`);
+      item.innerHTML = `<span class="o68-playlist-num">${String(index + 1).padStart(2, '0')}</span>`;
+      const copy = document.createElement('span');
+      copy.className = 'o68-playlist-song-copy';
+      copy.append(label, artist);
+      item.append(copy);
+      const badge = document.createElement('span');
+      badge.className = 'o68-playlist-platform';
+      badge.textContent = track.kind === 'spotify' ? 'Spotify' : 'MP3';
+      item.append(badge);
+      return item.outerHTML;
+    }).join('');
+
     function sync() {
-      play.textContent = audio.paused ? "▶" : "❚❚";
-      play.setAttribute(
-        "aria-label",
-        audio.paused ? "Lancer la musique" : "Mettre en pause",
-      );
-      document.getElementById("o68-playing-indicator").hidden = audio.paused;
+      const playingLocal = tracks[active].kind === 'local' && !audio.paused;
+      play.textContent = playingLocal ? '❚❚' : '▶';
+      play.setAttribute('aria-label', playingLocal ? 'Mettre en pause' : 'Lancer la musique');
+      document.getElementById('o68-playing-indicator').hidden = !playingLocal;
     }
-    fab.addEventListener("click", () => {
-      panel.hidden = !panel.hidden;
-      fab.setAttribute("aria-expanded", String(!panel.hidden));
-    });
-    document.getElementById("o68-music-close").addEventListener("click", () => {
-      panel.hidden = true;
-      fab.setAttribute("aria-expanded", "false");
-    });
-    play.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play().catch(() => {
-          title.textContent = "Son indisponible · vérifie le dossier music";
-        });
-      } else audio.pause();
-    });
-    document
-      .getElementById("o68-music-next")
-      .addEventListener("click", () => setTrack(active + 1, !audio.paused));
-    document
-      .getElementById("o68-music-prev")
-      .addEventListener("click", () => setTrack(active - 1, !audio.paused));
-    document
-      .getElementById("o68-music-volume")
-      .addEventListener("input", (e) => {
-        audio.volume = Number(e.target.value) / 100;
+
+    function setTrack(index, resume = false) {
+      const wasPlaying = !audio.paused;
+      audio.pause();
+      active = (index + tracks.length) % tracks.length;
+      const track = tracks[active];
+      title.textContent = track.artist + ' — ' + track.title;
+      const isSpotify = track.kind === 'spotify';
+      embedWrap.hidden = !isSpotify;
+      volumeWrapper.hidden = isSpotify;
+      play.hidden = isSpotify;
+      if (isSpotify) {
+        audio.removeAttribute('src');
+        audio.load();
+        iframe.title = `Écouter ${track.title} sur Spotify`;
+        // Iframe officiel: l'utilisateur doit lancer la lecture lui-même.
+        iframe.src = 'https://open.spotify.com/embed/track/' + encodeURIComponent(track.spotifyId) + '?utm_source=generator&theme=0';
+        openSpotify.href = 'https://open.spotify.com/track/' + encodeURIComponent(track.spotifyId);
+        status.textContent = 'Appuie sur lecture dans Spotify. Selon ton compte, un extrait ou la piste complète sera disponible.';
+      } else {
+        iframe.removeAttribute('src');
+        audio.src = track.src;
+        audio.load();
+        status.textContent = 'Instrumental original — lecture dans le bot.';
+        if (resume && wasPlaying) audio.play().catch(() => { status.textContent = 'Impossible de lire le fichier MP3.'; });
+      }
+      trackList.querySelectorAll('[data-track-index]').forEach(btn => {
+        const selected = Number(btn.dataset.trackIndex) === active;
+        btn.classList.toggle('active', selected);
+        btn.setAttribute('aria-pressed', String(selected));
       });
-    document
-      .querySelector("#page-product .product-video")
-      ?.addEventListener("play", () => audio.pause());
-    audio.addEventListener("play", sync);
-    audio.addEventListener("pause", sync);
-    audio.addEventListener("error", () => {
-      if (!audio.getAttribute("src")) return;
-      title.textContent = "Fichier MP3 absent · dossier music";
+      sync();
+    }
+
+    fab.addEventListener('click', () => {
+      panel.hidden = !panel.hidden;
+      fab.setAttribute('aria-expanded', String(!panel.hidden));
+    });
+    document.getElementById('o68-music-close').addEventListener('click', () => {
+      panel.hidden = true;
+      fab.setAttribute('aria-expanded', 'false');
+    });
+    play.addEventListener('click', () => {
+      if (tracks[active].kind !== 'local') return;
+      if (audio.paused) audio.play().catch(() => {status.textContent = 'Fichier MP3 absent : vérifie le dossier music/.';});
+      else audio.pause();
+    });
+    document.getElementById('o68-music-next').addEventListener('click', () => setTrack(active + 1, true));
+    document.getElementById('o68-music-prev').addEventListener('click', () => setTrack(active - 1, true));
+    trackList.addEventListener('click', event => {
+      const choice = event.target.closest('[data-track-index]');
+      if (choice) setTrack(Number(choice.dataset.trackIndex), true);
+    });
+    document.getElementById('o68-music-volume').addEventListener('input', event => {
+      audio.volume = Number(event.target.value) / 100;
+    });
+    document.querySelector('#page-product .product-video')?.addEventListener('play', () => audio.pause());
+    audio.addEventListener('play', sync);
+    audio.addEventListener('pause', sync);
+    audio.addEventListener('ended', () => setTrack(active + 1));
+    audio.addEventListener('error', () => {
+      if (audio.getAttribute('src')) status.textContent = 'Fichier audio introuvable · dossier music/.';
     });
     setTrack(0);
-    sync();
   }
 
   function getProductById(productId) {
