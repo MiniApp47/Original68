@@ -1058,10 +1058,10 @@ Les meilleurs h du monde 🌎🧤🏆`,
     });
   }
 
-  // WEST COAST RADIO — sélection visible sur la photo (4 titres), plus 2 instrumentaux.
-  // Titres commerciaux: lecture via l'intégration officielle Spotify (aucun MP3 copié).
-  // La lecture Spotify exige un clic dans son lecteur; le navigateur contrôle la disponibilité.
-  // Titres originaux du projet: lecture HTML audio depuis le dossier music/.
+  // WEST COAST RADIO — 4 titres Spotify et 2 instrumentaux originaux.
+  // Lancement automatique tenté à l'ouverture : les navigateurs et Telegram peuvent
+  // bloquer la lecture sonore avant toute interaction. Reprise au premier geste autorisé.
+  // Spotify n'autorise pas ici un démarrage forcé sans lecture dans son iframe.
   function setupWestCoastPlayer() {
     const tracks = [
       { artist: 'Dr. Dre', title: 'Nuthin\' But A "G" Thang', kind: 'spotify', spotifyId: '5Tbpp3OLLClPJF8t1DmrFD' },
@@ -1082,11 +1082,14 @@ Les meilleurs h du monde 🌎🧤🏆`,
     const volumeWrapper = document.getElementById('o68-music-volume-wrap');
     const trackList = document.getElementById('o68-playlist-tracks');
     const status = document.getElementById('o68-playback-status');
-    let active = 0;
+    // On démarre avec un morceau réellement hébergé pour qu'il puisse être lu dans le bot.
+    let active = 4;
+    let startupPending = true;
+    let startupBusy = false;
     audio.volume = 0.35;
     audio.loop = false;
+    audio.preload = 'auto';
 
-    // Cette liste complète les pistes existantes, elle n'ajoute pas les 36 titres invisibles.
     trackList.innerHTML = tracks.map((track, index) => {
       const label = document.createElement('span');
       label.textContent = track.title;
@@ -1114,9 +1117,50 @@ Les meilleurs h du monde 🌎🧤🏆`,
       play.textContent = playingLocal ? '❚❚' : '▶';
       play.setAttribute('aria-label', playingLocal ? 'Mettre en pause' : 'Lancer la musique');
       document.getElementById('o68-playing-indicator').hidden = !playingLocal;
+      fab.classList.toggle('o68-music-waiting', startupPending && !playingLocal);
     }
 
-    function setTrack(index, resume = false) {
+    function stopAutoStartup() {
+      startupPending = false;
+      document.removeEventListener('click', startOnGesture, true);
+      document.removeEventListener('touchend', startOnGesture, true);
+      document.removeEventListener('keydown', startOnGesture, true);
+      sync();
+    }
+
+    function startOnGesture(event) {
+      if (!startupPending || startupBusy || tracks[active].kind !== 'local') return;
+      // Ne pas déclencher une piste en même temps que la sélection d'une autre
+      // ou la lecture d'une vidéo produit.
+      if (event.target?.closest?.('#o68-music-panel, video, audio')) return;
+      attemptAutoStart();
+    }
+
+    function attemptAutoStart() {
+      if (!startupPending || startupBusy || tracks[active].kind !== 'local') return;
+      startupBusy = true;
+      try {
+        const promise = audio.play();
+        Promise.resolve(promise).then(() => {
+          stopAutoStartup();
+          status.textContent = 'Lecture West Coast en cours · musique originale.';
+        }).catch(err => {
+          if (!startupPending) return;
+          if (err?.name === 'NotAllowedError') {
+            status.textContent = 'Le son est bloqué au lancement : touche une fois le site pour lancer la musique.';
+          } else {
+            status.textContent = 'Musique indisponible : vérifie les deux MP3 dans music/.';
+            stopAutoStartup();
+          }
+        }).finally(() => { startupBusy = false; sync(); });
+      } catch (err) {
+        startupBusy = false;
+        status.textContent = 'Appuie une fois sur le site pour activer le son.';
+        sync();
+      }
+    }
+
+    function setTrack(index, resume = false, forcePlay = false) {
       const wasPlaying = !audio.paused;
       audio.pause();
       active = (index + tracks.length) % tracks.length;
@@ -1127,19 +1171,24 @@ Les meilleurs h du monde 🌎🧤🏆`,
       volumeWrapper.hidden = isSpotify;
       play.hidden = isSpotify;
       if (isSpotify) {
+        stopAutoStartup();
         audio.removeAttribute('src');
         audio.load();
         iframe.title = `Écouter ${track.title} sur Spotify`;
-        // Iframe officiel: l'utilisateur doit lancer la lecture lui-même.
         iframe.src = 'https://open.spotify.com/embed/track/' + encodeURIComponent(track.spotifyId) + '?utm_source=generator&theme=0';
         openSpotify.href = 'https://open.spotify.com/track/' + encodeURIComponent(track.spotifyId);
-        status.textContent = 'Appuie sur lecture dans Spotify. Selon ton compte, un extrait ou la piste complète sera disponible.';
+        status.textContent = 'Pour ce titre, lance la lecture dans Spotify (lecture automatique non autorisée).';
       } else {
         iframe.removeAttribute('src');
         audio.src = track.src;
         audio.load();
-        status.textContent = 'Instrumental original — lecture dans le bot.';
-        if (resume && wasPlaying) audio.play().catch(() => { status.textContent = 'Impossible de lire le fichier MP3.'; });
+        status.textContent = 'Instrumental West Coast · lecture dans le bot.';
+        if (forcePlay || (resume && wasPlaying)) {
+          stopAutoStartup();
+          audio.play().catch(() => {
+            status.textContent = 'Musique indisponible : vérifie le dossier music/.';
+          });
+        }
       }
       trackList.querySelectorAll('[data-track-index]').forEach(btn => {
         const selected = Number(btn.dataset.trackIndex) === active;
@@ -1159,14 +1208,15 @@ Les meilleurs h du monde 🌎🧤🏆`,
     });
     play.addEventListener('click', () => {
       if (tracks[active].kind !== 'local') return;
-      if (audio.paused) audio.play().catch(() => {status.textContent = 'Fichier MP3 absent : vérifie le dossier music/.';});
+      stopAutoStartup();
+      if (audio.paused) audio.play().catch(() => { status.textContent = 'Fichier MP3 absent : vérifie le dossier music/.'; });
       else audio.pause();
     });
-    document.getElementById('o68-music-next').addEventListener('click', () => setTrack(active + 1, true));
-    document.getElementById('o68-music-prev').addEventListener('click', () => setTrack(active - 1, true));
+    document.getElementById('o68-music-next').addEventListener('click', () => setTrack(active + 1, true, true));
+    document.getElementById('o68-music-prev').addEventListener('click', () => setTrack(active - 1, true, true));
     trackList.addEventListener('click', event => {
       const choice = event.target.closest('[data-track-index]');
-      if (choice) setTrack(Number(choice.dataset.trackIndex), true);
+      if (choice) setTrack(Number(choice.dataset.trackIndex), true, true);
     });
     document.getElementById('o68-music-volume').addEventListener('input', event => {
       audio.volume = Number(event.target.value) / 100;
@@ -1174,11 +1224,20 @@ Les meilleurs h du monde 🌎🧤🏆`,
     document.querySelector('#page-product .product-video')?.addEventListener('play', () => audio.pause());
     audio.addEventListener('play', sync);
     audio.addEventListener('pause', sync);
-    audio.addEventListener('ended', () => setTrack(active + 1));
+    audio.addEventListener('ended', () => {
+      // Enchaînement automatique des pistes MP3 disponibles : 5 -> 6 -> 5.
+      if (tracks[active].kind === 'local') setTrack(active === 4 ? 5 : 4, false, true);
+    });
     audio.addEventListener('error', () => {
       if (audio.getAttribute('src')) status.textContent = 'Fichier audio introuvable · dossier music/.';
     });
-    setTrack(0);
+    setTrack(4);
+    document.addEventListener('click', startOnGesture, true);
+    document.addEventListener('touchend', startOnGesture, true);
+    document.addEventListener('keydown', startOnGesture, true);
+    // Essai immédiat : certains navigateurs autorisent déjà la lecture. Sinon,
+    // le premier clic/toucher naturel sur la mini-app l'active sans bouton supplémentaire.
+    attemptAutoStart();
   }
 
   function getProductById(productId) {

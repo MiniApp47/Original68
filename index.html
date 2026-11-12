@@ -1717,6 +1717,9 @@ body {
 
 
 /* ORIGINAL68 · Playlist West Coast accessible depuis la radio */
+#o68-music-fab.o68-music-waiting{animation:o68-radio-pulse 1.65s ease-in-out infinite;}
+@keyframes o68-radio-pulse{50%{box-shadow:0 0 0 7px rgba(137,114,255,.13),0 0 25px rgba(137,114,255,.45);}}
+@media (prefers-reduced-motion: reduce){#o68-music-fab.o68-music-waiting{animation:none;}}
 #o68-music-panel{width:min(348px,calc(100vw - 24px));max-height:min(74vh,660px);overflow-y:auto;overscroll-behavior:contain;text-align:left;scrollbar-width:thin;scrollbar-color:#6758ae transparent;}
 #o68-music-play[hidden],#o68-spotify-wrap[hidden],#o68-music-volume-wrap[hidden]{display:none!important;}
 .o68-playlist-heading{font-size:10px;font-weight:900;letter-spacing:1px;color:#c1b5ff;margin:14px 0 9px;}
@@ -2079,7 +2082,7 @@ body {
     <div class="o68-music-player">
         <section class="o68-music-panel" id="o68-music-panel" hidden aria-label="Lecteur musical West Coast">
             <div class="o68-music-heading">
-                <div><b>WEST COAST RADIO · ORIGINAL68</b><small>4 classiques de ta photo + 2 instrumentaux</small></div>
+                <div><b>WEST COAST RADIO · ORIGINAL68</b><small>Démarrage auto des instrumentaux · 4 classiques Spotify</small></div>
                 <button type="button" id="o68-music-close" aria-label="Fermer le lecteur">×</button>
             </div>
             <div class="o68-music-controls">
@@ -2087,21 +2090,21 @@ body {
                 <button type="button" id="o68-music-play" aria-label="Lancer la musique">▶</button>
                 <button type="button" id="o68-music-next" aria-label="Morceau suivant">›</button>
             </div>
-            <strong id="o68-track-title">Dr. Dre — Nuthin' But A "G" Thang</strong>
-            <div id="o68-spotify-wrap">
+            <strong id="o68-track-title">ORIGINAL68 — Pacific Sunset · G-Funk</strong>
+            <div id="o68-spotify-wrap" hidden>
                 <iframe id="o68-spotify-embed" title="Écouter sur Spotify" width="100%" height="152"
                     frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 <a id="o68-open-spotify" href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Ouvrir dans Spotify ↗</a>
             </div>
-            <div id="o68-music-volume-wrap" hidden>
+            <div id="o68-music-volume-wrap">
                 <input id="o68-music-volume" type="range" value="35" min="0" max="100" aria-label="Volume de la musique">
             </div>
-            <p id="o68-playback-status" role="status">Sélectionne un morceau.</p>
+            <p id="o68-playback-status" role="status">Démarrage de la radio West Coast…</p>
             <div class="o68-playlist-heading">PLAYLIST · TITRES VISIBLES (4)</div>
             <div id="o68-playlist-tracks" aria-label="Titres de la sélection"></div>
             <p class="o68-playlist-note">Les titres commerciaux passent par Spotify. Aucun MP3 protégé n’est inclus. La capture n’affiche que 4 des 40 morceaux.</p>
-            <audio id="o68-audio" preload="none"></audio>
+            <audio id="o68-audio" preload="auto" playsinline></audio>
         </section>
         <button type="button" id="o68-music-fab" aria-label="Ouvrir la radio West Coast" aria-expanded="false">♫<span id="o68-playing-indicator" hidden></span></button>
     </div>
