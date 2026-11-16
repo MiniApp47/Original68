@@ -193,6 +193,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
             },
             {
               id: "liquid-papaya",
+              outOfStock: true, // Produit indisponible : aucune commande possible
               name: "Papaya 🥭",
               flag: "🇺🇸",
               farm: "LIQUID 🔱🇺🇸🥷",
@@ -211,6 +212,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
             },
             {
               id: "liquid-paplato",
+              outOfStock: true, // Produit indisponible : aucune commande possible
               name: "Paplato 🍰",
               flag: "🇺🇸",
               farm: "LIQUID 🔱🇺🇸🥷",
@@ -237,6 +239,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
           products: [
             {
               id: "quality-berry-white",
+              outOfStock: true, // Produit indisponible : aucune commande possible
               name: "Berry White 🍓",
               flag: "🇺🇸",
               farm: "QUALITY CAN YOU TASTE 🇺🇸",
