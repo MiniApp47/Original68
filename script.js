@@ -27,6 +27,36 @@ document.addEventListener("DOMContentLoaded", function () {
       productCount: 24,
       farmCount: 11,
       farms: [
+         {
+          id: "Mousseux Premium ⭐️⭐️⭐️⭐️⭐️",
+          name: "Mousseux Premium ⭐️⭐️⭐️⭐️⭐️",
+          icon: "🌴",
+          badgeText: "La Mousse • 1 référence",
+          products: [
+            {
+              id: "ice cream cake",
+              name: "Ice Cream Cake 🌴🍦",
+              flag: "🌴",
+              farm: "No Farm 🍯",
+              type: "Mousseux Premium ⭐️⭐️⭐️⭐️⭐️",
+              image: "ProductICC.png",
+              video: "VideoICC.mov",
+              description:
+                "",
+              promoEligible: false,
+              tarifs: [
+                {
+                  weight: "5g",
+                  price: 30,
+                },
+                {
+                  weight: "10g",
+                  price: 50,
+                },
+              ],
+            },
+          ],
+        },
         {
           id: "sifty-kreme",
           name: "SIFTY KREME ☄️🔥🇺🇸",
@@ -171,10 +201,29 @@ Les meilleurs h du monde 🌎🧤🏆`,
           id: "liquid-farm",
           name: "LIQUID FARM 🔱🇺🇸🥷",
           icon: "🇺🇸",
-          badgeText: "Wpff • 3 références",
+          badgeText: "Wpff • 4 références",
           products: [
             {
+              id: "Red planet",
+              name: "Red planet 🔴",
+              flag: "🇺🇸",
+              farm: "LIQUID 🔱🇺🇸🥷",
+              type: "Wpff",
+              image: "ProductRP.png",
+              video: "VideoRP.mov",
+              description:
+                "Nouveau Drop Liquid Farms Wpff🔱🇺🇸🥷\n Un Wpff rincé par un expert pour vous faire le meilleur Wpff possible c est du beurre 🧈 tout simplement les amis après inhalation les effets son magique 🧙 vous passerez un agréable moment sur votre petit nuage ☁️ qui vous transportera sur L.A🇺🇸.\n Le Produit qui parle à ma place ‼️\n Rapport Qualité Prix 🥇 \n Quantité Limité ⚠️ ",
+              promoEligible: false,
+              tarifs: [
+                {
+                  weight: "1g",
+                  price: 30,
+                },
+              ],
+            },
+            {
               id: "liquid-Gas Light 💡",
+              outOfStock: true, // Produit indisponible : aucune commande possible
               name: "Gas Light 💡",
               flag: "🇺🇸",
               farm: "LIQUID 🔱🇺🇸🥷",
@@ -193,7 +242,6 @@ Les meilleurs h du monde 🌎🧤🏆`,
             },
             {
               id: "liquid-papaya",
-              outOfStock: true, // Produit indisponible : aucune commande possible
               name: "Papaya 🥭",
               flag: "🇺🇸",
               farm: "LIQUID 🔱🇺🇸🥷",
@@ -738,8 +786,74 @@ Les meilleurs h du monde 🌎🧤🏆`,
           id: "cali-topshelf",
           name: "CALI TOPSHELF BAGS 🎒",
           icon: "🇺🇸",
-          badgeText: "Bags • 2 références",
+          badgeText: "Bags • 5 références",
           products: [
+            {
+              id: "candy fumez ",
+              name: "Candy Fumez 🍬",
+              flag: "🇺🇸",
+              farm: "CALI TOPSHELF BAGS 🎒",
+              type: "Bags",
+              image: "ProductCF.png",
+              video: "VideoCF.mov",
+              description:
+                "",
+              promoEligible: false,
+              tarifs: [
+                {
+                  weight: "2g",
+                  price: 30,
+                },
+                {
+                  weight: "5g",
+                  price: 70,
+                },
+              ],
+            },
+            {
+              id: "Animal tree",
+              name: "Animal tree 🐒🌳",
+              flag: "🇺🇸",
+              farm: "CALI TOPSHELF BAGS 🎒",
+              type: "Bags",
+              image: "ProductAT.png",
+              video: "VideoAT.mov",
+              description:
+                "",
+              promoEligible: false,
+              tarifs: [
+                {
+                  weight: "2g",
+                  price: 30,
+                },
+                {
+                  weight: "5g",
+                  price: 70,
+                },
+              ],
+            },
+            {
+              id: "big mike",
+              name: "Big Mike 🕵️‍♂️",
+              flag: "🇺🇸",
+              farm: "CALI TOPSHELF BAGS 🎒",
+              type: "Bags",
+              image: "ProductBM.png",
+              video: "VideoBM.mov",
+              description:
+                "",
+              promoEligible: false,
+              tarifs: [
+                {
+                  weight: "2g",
+                  price: 30,
+                },
+                {
+                  weight: "5g",
+                  price: 70,
+                },
+              ],
+            },
             {
               id: "cali-bolo-runtz",
               name: "Bolo Runtz 🌸",
@@ -1061,186 +1175,80 @@ Les meilleurs h du monde 🌎🧤🏆`,
     });
   }
 
-  // WEST COAST RADIO — 4 titres Spotify et 2 instrumentaux originaux.
-  // Lancement automatique tenté à l'ouverture : les navigateurs et Telegram peuvent
-  // bloquer la lecture sonore avant toute interaction. Reprise au premier geste autorisé.
-  // Spotify n'autorise pas ici un démarrage forcé sans lecture dans son iframe.
+  // WEST COAST RADIO — uniquement les 4 classiques US via Spotify.
+  // Les lecteurs Spotify exigent une action de l'utilisateur pour démarrer le son.
+  // Aucune piste ORIGINAL68 ni tentative de lecture MP3 automatique.
   function setupWestCoastPlayer() {
     const tracks = [
-      { artist: 'Dr. Dre', title: 'Nuthin\' But A "G" Thang', kind: 'spotify', spotifyId: '5Tbpp3OLLClPJF8t1DmrFD' },
-      { artist: 'Snoop Dogg', title: 'Gin and Juice', kind: 'spotify', spotifyId: '78woORB9AEjQnH08W8O2ne' },
-      { artist: 'Warren G feat. Nate Dogg', title: 'Regulate', kind: 'spotify', spotifyId: '1jsV2qNo1Y8r6rJ763KpdE' },
-      { artist: '2Pac', title: 'I Get Around', kind: 'spotify', spotifyId: '4voEoczU7Ijborps9XF1n3' },
-      { artist: 'ORIGINAL68', title: 'Pacific Sunset · G-Funk', kind: 'local', src: 'music/Pacific_Sunset.mp3' },
-      { artist: 'ORIGINAL68', title: 'Lowrider Boulevard · West Coast', kind: 'local', src: 'music/Lowrider_Boulevard.mp3' },
+      { artist: 'Dr. Dre', title: 'Nuthin\' But A "G" Thang', spotifyId: '5Tbpp3OLLClPJF8t1DmrFD' },
+      { artist: 'Snoop Dogg', title: 'Gin and Juice', spotifyId: '78woORB9AEjQnH08W8O2ne' },
+      { artist: 'Warren G feat. Nate Dogg', title: 'Regulate', spotifyId: '1jsV2qNo1Y8r6rJ763KpdE' },
+      { artist: '2Pac', title: 'I Get Around', spotifyId: '4voEoczU7Ijborps9XF1n3' },
     ];
-    const audio = document.getElementById('o68-audio');
     const panel = document.getElementById('o68-music-panel');
     const fab = document.getElementById('o68-music-fab');
-    const play = document.getElementById('o68-music-play');
     const title = document.getElementById('o68-track-title');
     const iframe = document.getElementById('o68-spotify-embed');
-    const embedWrap = document.getElementById('o68-spotify-wrap');
     const openSpotify = document.getElementById('o68-open-spotify');
-    const volumeWrapper = document.getElementById('o68-music-volume-wrap');
     const trackList = document.getElementById('o68-playlist-tracks');
     const status = document.getElementById('o68-playback-status');
-    // On démarre avec un morceau réellement hébergé pour qu'il puisse être lu dans le bot.
-    let active = 4;
-    let startupPending = true;
-    let startupBusy = false;
-    audio.volume = 0.35;
-    audio.loop = false;
-    audio.preload = 'auto';
+    if (!panel || !fab || !title || !iframe || !openSpotify || !trackList || !status) return;
 
-    trackList.innerHTML = tracks.map((track, index) => {
-      const label = document.createElement('span');
-      label.textContent = track.title;
-      const artist = document.createElement('small');
-      artist.textContent = track.artist;
+    let active = 0; // Dr. Dre sélectionné dès l'ouverture du bot.
+    trackList.replaceChildren();
+    tracks.forEach((track, index) => {
       const item = document.createElement('button');
       item.type = 'button';
       item.className = 'o68-playlist-song';
       item.dataset.trackIndex = String(index);
-      item.setAttribute('aria-label', `Sélectionner ${track.title} — ${track.artist}`);
-      item.innerHTML = `<span class="o68-playlist-num">${String(index + 1).padStart(2, '0')}</span>`;
+      item.setAttribute('aria-label', `Écouter ${track.title} — ${track.artist}`);
+      const num = document.createElement('span');
+      num.className = 'o68-playlist-num';
+      num.textContent = String(index + 1).padStart(2, '0');
       const copy = document.createElement('span');
       copy.className = 'o68-playlist-song-copy';
-      copy.append(label, artist);
-      item.append(copy);
+      const name = document.createElement('span');
+      name.textContent = track.title;
+      const artist = document.createElement('small');
+      artist.textContent = track.artist;
+      copy.append(name, artist);
       const badge = document.createElement('span');
       badge.className = 'o68-playlist-platform';
-      badge.textContent = track.kind === 'spotify' ? 'Spotify' : 'MP3';
-      item.append(badge);
-      return item.outerHTML;
-    }).join('');
+      badge.textContent = 'Spotify';
+      item.append(num, copy, badge);
+      trackList.appendChild(item);
+    });
 
-    function sync() {
-      const playingLocal = tracks[active].kind === 'local' && !audio.paused;
-      play.textContent = playingLocal ? '❚❚' : '▶';
-      play.setAttribute('aria-label', playingLocal ? 'Mettre en pause' : 'Lancer la musique');
-      document.getElementById('o68-playing-indicator').hidden = !playingLocal;
-      fab.classList.toggle('o68-music-waiting', startupPending && !playingLocal);
-    }
-
-    function stopAutoStartup() {
-      startupPending = false;
-      document.removeEventListener('click', startOnGesture, true);
-      document.removeEventListener('touchend', startOnGesture, true);
-      document.removeEventListener('keydown', startOnGesture, true);
-      sync();
-    }
-
-    function startOnGesture(event) {
-      if (!startupPending || startupBusy || tracks[active].kind !== 'local') return;
-      // Ne pas déclencher une piste en même temps que la sélection d'une autre
-      // ou la lecture d'une vidéo produit.
-      if (event.target?.closest?.('#o68-music-panel, video, audio')) return;
-      attemptAutoStart();
-    }
-
-    function attemptAutoStart() {
-      if (!startupPending || startupBusy || tracks[active].kind !== 'local') return;
-      startupBusy = true;
-      try {
-        const promise = audio.play();
-        Promise.resolve(promise).then(() => {
-          stopAutoStartup();
-          status.textContent = 'Lecture West Coast en cours · musique originale.';
-        }).catch(err => {
-          if (!startupPending) return;
-          if (err?.name === 'NotAllowedError') {
-            status.textContent = 'Le son est bloqué au lancement : touche une fois le site pour lancer la musique.';
-          } else {
-            status.textContent = 'Musique indisponible : vérifie les deux MP3 dans music/.';
-            stopAutoStartup();
-          }
-        }).finally(() => { startupBusy = false; sync(); });
-      } catch (err) {
-        startupBusy = false;
-        status.textContent = 'Appuie une fois sur le site pour activer le son.';
-        sync();
-      }
-    }
-
-    function setTrack(index, resume = false, forcePlay = false) {
-      const wasPlaying = !audio.paused;
-      audio.pause();
+    function setTrack(index) {
       active = (index + tracks.length) % tracks.length;
       const track = tracks[active];
-      title.textContent = track.artist + ' — ' + track.title;
-      const isSpotify = track.kind === 'spotify';
-      embedWrap.hidden = !isSpotify;
-      volumeWrapper.hidden = isSpotify;
-      play.hidden = isSpotify;
-      if (isSpotify) {
-        stopAutoStartup();
-        audio.removeAttribute('src');
-        audio.load();
-        iframe.title = `Écouter ${track.title} sur Spotify`;
-        iframe.src = 'https://open.spotify.com/embed/track/' + encodeURIComponent(track.spotifyId) + '?utm_source=generator&theme=0';
-        openSpotify.href = 'https://open.spotify.com/track/' + encodeURIComponent(track.spotifyId);
-        status.textContent = 'Pour ce titre, lance la lecture dans Spotify (lecture automatique non autorisée).';
-      } else {
-        iframe.removeAttribute('src');
-        audio.src = track.src;
-        audio.load();
-        status.textContent = 'Instrumental West Coast · lecture dans le bot.';
-        if (forcePlay || (resume && wasPlaying)) {
-          stopAutoStartup();
-          audio.play().catch(() => {
-            status.textContent = 'Musique indisponible : vérifie le dossier music/.';
-          });
-        }
-      }
+      title.textContent = `${track.artist} — ${track.title}`;
+      iframe.title = `Écouter ${track.title} sur Spotify`;
+      iframe.src = 'https://open.spotify.com/embed/track/' + encodeURIComponent(track.spotifyId) + '?utm_source=generator&theme=0';
+      openSpotify.href = 'https://open.spotify.com/track/' + encodeURIComponent(track.spotifyId);
+      status.textContent = 'Appuie sur Lecture dans Spotify pour écouter ce titre US.';
       trackList.querySelectorAll('[data-track-index]').forEach(btn => {
         const selected = Number(btn.dataset.trackIndex) === active;
         btn.classList.toggle('active', selected);
         btn.setAttribute('aria-pressed', String(selected));
       });
-      sync();
     }
 
     fab.addEventListener('click', () => {
       panel.hidden = !panel.hidden;
       fab.setAttribute('aria-expanded', String(!panel.hidden));
     });
-    document.getElementById('o68-music-close').addEventListener('click', () => {
+    document.getElementById('o68-music-close')?.addEventListener('click', () => {
       panel.hidden = true;
       fab.setAttribute('aria-expanded', 'false');
     });
-    play.addEventListener('click', () => {
-      if (tracks[active].kind !== 'local') return;
-      stopAutoStartup();
-      if (audio.paused) audio.play().catch(() => { status.textContent = 'Fichier MP3 absent : vérifie le dossier music/.'; });
-      else audio.pause();
-    });
-    document.getElementById('o68-music-next').addEventListener('click', () => setTrack(active + 1, true, true));
-    document.getElementById('o68-music-prev').addEventListener('click', () => setTrack(active - 1, true, true));
+    document.getElementById('o68-music-next')?.addEventListener('click', () => setTrack(active + 1));
+    document.getElementById('o68-music-prev')?.addEventListener('click', () => setTrack(active - 1));
     trackList.addEventListener('click', event => {
       const choice = event.target.closest('[data-track-index]');
-      if (choice) setTrack(Number(choice.dataset.trackIndex), true, true);
+      if (choice) setTrack(Number(choice.dataset.trackIndex));
     });
-    document.getElementById('o68-music-volume').addEventListener('input', event => {
-      audio.volume = Number(event.target.value) / 100;
-    });
-    document.querySelector('#page-product .product-video')?.addEventListener('play', () => audio.pause());
-    audio.addEventListener('play', sync);
-    audio.addEventListener('pause', sync);
-    audio.addEventListener('ended', () => {
-      // Enchaînement automatique des pistes MP3 disponibles : 5 -> 6 -> 5.
-      if (tracks[active].kind === 'local') setTrack(active === 4 ? 5 : 4, false, true);
-    });
-    audio.addEventListener('error', () => {
-      if (audio.getAttribute('src')) status.textContent = 'Fichier audio introuvable · dossier music/.';
-    });
-    setTrack(4);
-    document.addEventListener('click', startOnGesture, true);
-    document.addEventListener('touchend', startOnGesture, true);
-    document.addEventListener('keydown', startOnGesture, true);
-    // Essai immédiat : certains navigateurs autorisent déjà la lecture. Sinon,
-    // le premier clic/toucher naturel sur la mini-app l'active sans bouton supplémentaire.
-    attemptAutoStart();
+    setTrack(0);
   }
 
   function getProductById(productId) {

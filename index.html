@@ -1511,11 +1511,11 @@ body {background-image:radial-gradient(circle at 15% 0,rgba(101,57,153,.22),tran
 }
 .o68-music-player{position:fixed;right:14px;bottom:calc(81px + env(safe-area-inset-bottom));z-index:90;display:flex;align-items:flex-end;flex-direction:column;gap:9px;}
 #o68-music-fab{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#e6a826,#ffe171);border:1px solid #ffe393;box-shadow:0 6px 20px #c78a4e83;color:#160f06;font-size:27px;font-weight:900;cursor:pointer;position:relative;}
-#o68-playing-indicator{position:absolute;right:0;top:0;width:10px;height:10px;border-radius:50%;background:#38dd9a;border:2px solid #120c0f;}
+
 #o68-music-panel{width:min(286px,calc(100vw - 28px));border:1px solid #ecc263;background:linear-gradient(145deg,#261e23f5,#0e0d10f9);border-radius:18px;padding:13px;box-shadow:0 16px 60px #000e;backdrop-filter:blur(16px);text-align:center;}
 #o68-music-panel[hidden]{display:none!important}.o68-music-heading{display:flex;justify-content:space-between;align-items:flex-start;text-align:left;gap:10px;}.o68-music-heading b{font-size:11px;letter-spacing:.8px;color:#ffd56d;}.o68-music-heading small{display:block;margin:4px 0 0;color:#b6a5b8;font-size:9px;}.o68-music-heading button{background:none;border:0;color:#fff;font-size:20px;cursor:pointer;}
-.o68-music-controls{display:flex;justify-content:center;align-items:center;gap:16px;margin:10px 0;}.o68-music-controls button{background:#463348;border:1px solid #765a72;border-radius:50%;height:35px;width:35px;color:#fff;font-size:24px;cursor:pointer;}.o68-music-controls #o68-music-play{background:#f7c746;border-color:#ffe78d;color:#1a1307;width:44px;height:44px;font-size:20px;}
-#o68-track-title{display:block;color:#fff;font-size:11px;margin:8px 0;}#o68-music-volume{width:85%;accent-color:#f6c242;height:12px;margin:8px 0;}
+.o68-music-controls{display:flex;justify-content:center;align-items:center;gap:16px;margin:10px 0;}.o68-music-controls button{background:#463348;border:1px solid #765a72;border-radius:50%;height:35px;width:35px;color:#fff;font-size:24px;cursor:pointer;}
+#o68-track-title{display:block;color:#fff;font-size:11px;margin:8px 0;}
 @media (min-width:650px){.o68-hero{height:345px}.o68-discovery{padding:5px 22px 30px}#page-home #product-list{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:15px!important}.o68-product-media{height:175px!important}.o68-farm-card{flex-basis:126px}}
 @media (max-width:370px){.o68-category-tab{font-size:10px}.o68-farm-card{flex-basis:105px}.o68-product-title{font-size:11px}.o68-price{font-size:11px}.o68-detail-btn{font-size:9px}}
 
@@ -1620,8 +1620,8 @@ body {
 .o68-music-heading b{color:#bcb1ff;}
 .o68-music-heading small{color:#b9b1d6;}
 .o68-music-controls button{background:#392a76;border-color:#6652b3;color:#fff;}
-.o68-music-controls #o68-music-play{background:linear-gradient(135deg,#764de8,#4775fa);border-color:#aea5ff;color:white;}
-#o68-music-volume{accent-color:#8972ff;}
+
+
 /* Fiches, panier, contacts et infos : harmonisation sans changer les fonctionnalités. */
 .page-header {background:linear-gradient(125deg,#25174c,#0d0b2a)!important;border-bottom:1px solid #7468cc;}
 .page-header .title{color:#f5f2ff;}
@@ -1716,12 +1716,10 @@ body {
 }
 
 
-/* ORIGINAL68 · Playlist West Coast accessible depuis la radio */
-#o68-music-fab.o68-music-waiting{animation:o68-radio-pulse 1.65s ease-in-out infinite;}
-@keyframes o68-radio-pulse{50%{box-shadow:0 0 0 7px rgba(137,114,255,.13),0 0 25px rgba(137,114,255,.45);}}
-@media (prefers-reduced-motion: reduce){#o68-music-fab.o68-music-waiting{animation:none;}}
+/* ORIGINAL68 · Playlist West Coast, 4 titres Spotify */
 #o68-music-panel{width:min(348px,calc(100vw - 24px));max-height:min(74vh,660px);overflow-y:auto;overscroll-behavior:contain;text-align:left;scrollbar-width:thin;scrollbar-color:#6758ae transparent;}
-#o68-music-play[hidden],#o68-spotify-wrap[hidden],#o68-music-volume-wrap[hidden]{display:none!important;}
+#o68-spotify-wrap[hidden]{display:none!important;}
+.o68-music-controls-label{font-size:10px;font-weight:900;letter-spacing:.7px;color:#c7bdff;}
 .o68-playlist-heading{font-size:10px;font-weight:900;letter-spacing:1px;color:#c1b5ff;margin:14px 0 9px;}
 #o68-playlist-tracks{display:grid;gap:6px;}
 .o68-playlist-song{width:100%;display:flex;align-items:center;gap:10px;padding:10px 9px;border:1px solid #5b4c9a;background:#251c43;color:#fff;border-radius:13px;text-align:left;cursor:pointer;font-family:inherit;}
@@ -2082,31 +2080,27 @@ body {
     <div class="o68-music-player">
         <section class="o68-music-panel" id="o68-music-panel" hidden aria-label="Lecteur musical West Coast">
             <div class="o68-music-heading">
-                <div><b>WEST COAST RADIO · ORIGINAL68</b><small>Démarrage auto des instrumentaux · 4 classiques Spotify</small></div>
+                <div><b>WEST COAST RADIO · ORIGINAL68</b><small>100 % classiques US · Spotify</small></div>
                 <button type="button" id="o68-music-close" aria-label="Fermer le lecteur">×</button>
             </div>
             <div class="o68-music-controls">
                 <button type="button" id="o68-music-prev" aria-label="Morceau précédent">‹</button>
-                <button type="button" id="o68-music-play" aria-label="Lancer la musique">▶</button>
+                <span class="o68-music-controls-label">4 CLASSIQUES US</span>
                 <button type="button" id="o68-music-next" aria-label="Morceau suivant">›</button>
             </div>
-            <strong id="o68-track-title">ORIGINAL68 — Pacific Sunset · G-Funk</strong>
-            <div id="o68-spotify-wrap" hidden>
+            <strong id="o68-track-title" aria-live="polite">Dr. Dre — Nuthin' But A "G" Thang</strong>
+            <div id="o68-spotify-wrap">
                 <iframe id="o68-spotify-embed" title="Écouter sur Spotify" width="100%" height="152"
                     frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 <a id="o68-open-spotify" href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer">Ouvrir dans Spotify ↗</a>
             </div>
-            <div id="o68-music-volume-wrap">
-                <input id="o68-music-volume" type="range" value="35" min="0" max="100" aria-label="Volume de la musique">
-            </div>
-            <p id="o68-playback-status" role="status">Démarrage de la radio West Coast…</p>
-            <div class="o68-playlist-heading">PLAYLIST · TITRES VISIBLES (4)</div>
+            <p id="o68-playback-status" role="status">Appuie sur Lecture dans Spotify pour écouter ce titre US.</p>
+            <div class="o68-playlist-heading">PLAYLIST · 4 TITRES US</div>
             <div id="o68-playlist-tracks" aria-label="Titres de la sélection"></div>
-            <p class="o68-playlist-note">Les titres commerciaux passent par Spotify. Aucun MP3 protégé n’est inclus. La capture n’affiche que 4 des 40 morceaux.</p>
-            <audio id="o68-audio" preload="auto" playsinline></audio>
+            <p class="o68-playlist-note">Les morceaux sont lus via Spotify. Le son nécessite une action dans son lecteur ; l'autoplay sonore n'est pas garanti.</p>
         </section>
-        <button type="button" id="o68-music-fab" aria-label="Ouvrir la radio West Coast" aria-expanded="false">♫<span id="o68-playing-indicator" hidden></span></button>
+        <button type="button" id="o68-music-fab" aria-label="Ouvrir la radio West Coast" aria-expanded="false">♫</button>
     </div>
 
     <div id="notification-toast"></div>
