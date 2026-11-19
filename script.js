@@ -1175,9 +1175,9 @@ Les meilleurs h du monde 🌎🧤🏆`,
     });
   }
 
-  // WEST COAST RADIO — uniquement les 4 classiques US via Spotify.
-  // Les lecteurs Spotify exigent une action de l'utilisateur pour démarrer le son.
-  // Aucune piste ORIGINAL68 ni tentative de lecture MP3 automatique.
+  // WEST COAST RADIO · uniquement des titres US via l'API iFrame officielle Spotify.
+  // Tentative au chargement + au premier geste utilisateur. Spotify/Telegram/iOS
+  // gardent le contrôle des restrictions d'autoplay et du mode d'écoute autorisé.
   function setupWestCoastPlayer() {
     const tracks = [
       { artist: 'Dr. Dre', title: 'Nuthin\' But A "G" Thang', spotifyId: '5Tbpp3OLLClPJF8t1DmrFD' },
@@ -1188,13 +1188,57 @@ Les meilleurs h du monde 🌎🧤🏆`,
     const panel = document.getElementById('o68-music-panel');
     const fab = document.getElementById('o68-music-fab');
     const title = document.getElementById('o68-track-title');
-    const iframe = document.getElementById('o68-spotify-embed');
+    const embed = document.getElementById('o68-spotify-embed');
     const openSpotify = document.getElementById('o68-open-spotify');
     const trackList = document.getElementById('o68-playlist-tracks');
     const status = document.getElementById('o68-playback-status');
-    if (!panel || !fab || !title || !iframe || !openSpotify || !trackList || !status) return;
+    const playButton = document.getElementById('o68-music-play');
+    if (!panel || !fab || !title || !embed || !openSpotify || !trackList || !status || !playButton) return;
 
-    let active = 0; // Dr. Dre sélectionné dès l'ouverture du bot.
+    let active = 0;
+    let player = null;
+    let playerReady = false;
+    let playing = false;
+    let firstGesture = false;
+    let fallback = true;
+    const uriFor = index => 'spotify:track:' + tracks[index].spotifyId;
+
+    function setStatus(message) { status.textContent = message; }
+    function updatePlayButton() {
+      playButton.textContent = playing ? '⏸ Pause' : '▶ Lancer la radio US';
+      playButton.setAttribute('aria-pressed', String(playing));
+      fab.title = playing ? 'Radio US en cours' : 'Lancer la radio US';
+    }
+    function fallbackEmbed(index) {
+      let iframe = embed.querySelector('iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.setAttribute('title', 'Écouter sur Spotify');
+        iframe.setAttribute('allow', 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        iframe.setAttribute('frameborder', '0');
+        iframe.width = '100%';
+        iframe.height = '152';
+        embed.appendChild(iframe);
+      }
+      iframe.src = 'https://open.spotify.com/embed/track/' + tracks[index].spotifyId + '?theme=0';
+    }
+    // L'API Spotify démarre une lecture quand elle l'autorise, sans garantie
+    // de lecture intégrale ou d'autoplay sur tous les appareils.
+    function tryStart(reason) {
+      if (!player || !playerReady || playing) return false;
+      try {
+        player.play();
+        setStatus(reason === 'open'
+          ? 'Lecture automatique demandée à Spotify. Si le son est bloqué, appuie sur ▶.'
+          : 'Lecture demandée à Spotify. Si rien ne démarre, appuie sur Lecture dans Spotify.');
+        return true;
+      } catch (error) {
+        setStatus('Spotify a bloqué la lecture. Essaie le bouton de son lecteur.');
+        return false;
+      }
+    }
+
     trackList.replaceChildren();
     tracks.forEach((track, index) => {
       const item = document.createElement('button');
@@ -1219,14 +1263,22 @@ Les meilleurs h du monde 🌎🧤🏆`,
       trackList.appendChild(item);
     });
 
-    function setTrack(index) {
+    function setTrack(index, playAfterSelection = false) {
       active = (index + tracks.length) % tracks.length;
       const track = tracks[active];
       title.textContent = `${track.artist} — ${track.title}`;
-      iframe.title = `Écouter ${track.title} sur Spotify`;
-      iframe.src = 'https://open.spotify.com/embed/track/' + encodeURIComponent(track.spotifyId) + '?utm_source=generator&theme=0';
-      openSpotify.href = 'https://open.spotify.com/track/' + encodeURIComponent(track.spotifyId);
-      status.textContent = 'Appuie sur Lecture dans Spotify pour écouter ce titre US.';
+      openSpotify.href = 'https://open.spotify.com/track/' + track.spotifyId;
+      playing = false;
+      updatePlayButton();
+      if (player) {
+        try { player.loadEntity(uriFor(active)); }
+        catch (_) { setStatus('Sélectionne le titre directement dans Spotify.'); }
+        if (playAfterSelection) tryStart('click');
+      } else if (fallback) {
+        fallbackEmbed(active);
+      }
+      if (!playAfterSelection || !playerReady)
+        setStatus('Morceau sélectionné : ' + track.artist + '. Lecture au premier clic, si autorisée.');
       trackList.querySelectorAll('[data-track-index]').forEach(btn => {
         const selected = Number(btn.dataset.trackIndex) === active;
         btn.classList.toggle('active', selected);
@@ -1234,21 +1286,93 @@ Les meilleurs h du monde 🌎🧤🏆`,
       });
     }
 
+    // Au premier clic/toucher sur une partie du site (hors iframe Spotify),
+    // cette fonction s'exécute directement pendant l'interaction utilisateur.
+    // Un clic dans le lecteur Spotify embarqué reste géré par Spotify.
+    function onFirstGesture() {
+      if (firstGesture || !playerReady) return;
+      firstGesture = true;
+      tryStart('click');
+      document.removeEventListener('pointerdown', onFirstGesture, true);
+      document.removeEventListener('click', onFirstGesture, true);
+    }
+    document.addEventListener('pointerdown', onFirstGesture, { capture: true });
+    document.addEventListener('click', onFirstGesture, { capture: true });
+    document.addEventListener('keydown', event => {
+      if (!firstGesture && ['Enter', ' ', 'Spacebar'].includes(event.key)) onFirstGesture();
+    }, { capture: true });
+
     fab.addEventListener('click', () => {
       panel.hidden = !panel.hidden;
       fab.setAttribute('aria-expanded', String(!panel.hidden));
+      if (!playing) tryStart('click');
     });
     document.getElementById('o68-music-close')?.addEventListener('click', () => {
       panel.hidden = true;
       fab.setAttribute('aria-expanded', 'false');
     });
-    document.getElementById('o68-music-next')?.addEventListener('click', () => setTrack(active + 1));
-    document.getElementById('o68-music-prev')?.addEventListener('click', () => setTrack(active - 1));
+    playButton.addEventListener('click', () => {
+      if (!player || !playerReady) {
+        setStatus('Lecteur en chargement. Si nécessaire, utilise Lecture dans Spotify.');
+        return;
+      }
+      try {
+        if (playing) player.pause();
+        else tryStart('click');
+      } catch (_) { setStatus('Utilise le bouton Lecture du lecteur Spotify.'); }
+    });
+    document.getElementById('o68-music-next')?.addEventListener('click', () => setTrack(active + 1, true));
+    document.getElementById('o68-music-prev')?.addEventListener('click', () => setTrack(active - 1, true));
     trackList.addEventListener('click', event => {
       const choice = event.target.closest('[data-track-index]');
-      if (choice) setTrack(Number(choice.dataset.trackIndex));
+      if (choice) setTrack(Number(choice.dataset.trackIndex), true);
     });
     setTrack(0);
+
+    // Important : définir le callback AVANT de charger le SDK Spotify.
+    window.onSpotifyIframeApiReady = (IFrameAPI) => {
+      try {
+        // Le conteneur initial contient un iframe de secours si le SDK échoue.
+        embed.replaceChildren();
+        fallback = false;
+        IFrameAPI.createController(embed, {
+          uri: uriFor(active), width: '100%', height: 152
+        }, controller => {
+          player = controller;
+          player.addListener('ready', () => {
+            playerReady = true;
+            // Tentative dès l'ouverture (peut être bloquée par le navigateur).
+            tryStart('open');
+          });
+          player.addListener('playback_started', () => {
+            playing = true;
+            updatePlayButton();
+            setStatus('♫ Lecture Spotify en cours.');
+          });
+          player.addListener('playback_update', event => {
+            if (typeof event?.data?.isPaused !== 'boolean') return;
+            playing = !event.data.isPaused;
+            updatePlayButton();
+            if (playing) setStatus('♫ Lecture Spotify en cours.');
+          });
+        });
+      } catch (_) {
+        player = null;
+        playerReady = false;
+        fallback = true;
+        fallbackEmbed(active);
+        setStatus('Lecteur Spotify disponible en mode manuel.');
+      }
+    };
+    const sdk = document.createElement('script');
+    sdk.src = 'https://open.spotify.com/embed/iframe-api/v1';
+    sdk.async = true;
+    sdk.onerror = () => {
+      fallback = true;
+      fallbackEmbed(active);
+      setStatus('Lancement automatique indisponible. Utilise Lecture dans Spotify.');
+    };
+    document.head.appendChild(sdk);
   }
 
   function getProductById(productId) {
