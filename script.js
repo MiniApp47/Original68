@@ -118,6 +118,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
             },
             {
               id: "humboldt-red-bull",
+              outOfStock: true, // Produit indisponible : aucune commande possible
               name: "RED BULL 🥤🤯",
               flag: "🇺🇸",
               farm: "Humboldt Hash 🥇⚠️",
@@ -136,6 +137,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
             },
             {
               id: "humboldt-purple-dream",
+              outOfStock: true, // Produit indisponible : aucune commande possible
               name: "PURPLE DREAM ☂️",
               flag: "🇺🇸",
               farm: "Humboldt Hash 🥇⚠️",
