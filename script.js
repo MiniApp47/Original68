@@ -912,6 +912,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
     video: "",
     description: "🇺🇸 MINI PACK USA · OFFRE LIMITÉE\n\n1 g de Humboldt ou Static Room\n1 bag Cali Top Shelf de 3,5 g\n1 g de Liquid Farm ou CaliPlate\n\nChoisis chaque référence ci-dessous. Prix unique : 150 € au lieu de 180 € (30 € économisés).",
     oldPrice: 180,
+    packTotalWeight: "5,5 g",
     promoEligible: false,
     tarifs: [{weight:"1 pack 5,5g", price:150}],
     packSlots: [
@@ -931,10 +932,46 @@ Les meilleurs h du monde 🌎🧤🏆`,
       ]}
     ]
   };
+
+  // PACK ANONYMUZ : 2g de chaque type, variantes sélectionnables.
+  // Les références en rupture sont automatiquement exclues du sélecteur.
+  const packAnonymuz = {
+    id: "pack-anonymuz-100",
+    name: "🌙 PACK ANONYMUZ",
+    flag: "🌙",
+    farm: "ANONYMUZ FARMZ",
+    type: "Pack Anonymuz · 6 g",
+    image: "logos-farms/FarmAnonymuz.png",
+    video: "",
+    description: "🌙 PACK ANONYMUZ · 6 g AU TOTAL\n\n2 g de Sultan Static\n2 g de Fresh Frozen Sift\n2 g de 120µ\n\nChoisis une variété pour chaque type. Prix spécial : 100 € au lieu de 120 € (20 € économisés).",
+    oldPrice: 120,
+    packTotalWeight: "6 g",
+    promoEligible: false,
+    tarifs: [{weight:"1 pack 6g", price:100}],
+    packSlots: [
+      {id:"sultan", label:"2 g · Sultan Static", options:[
+        {id:"sultan-tropicali", name:"Tropicali", productId:"tropicali"},
+        {id:"sultan-tangie", name:"Tangie", productId:"Tangie"}
+      ]},
+      {id:"fresh", label:"2 g · Fresh Frozen Sift", options:[
+        {id:"frozen-tropicali", name:"Tropicali", productId:"anonymuz-tropicali"},
+        {id:"frozen-guavana", name:"Tropic Guavana", productId:"anonymuz-tropic-guavana"},
+        {id:"frozen-cherry", name:"Tropic Cherry", productId:"anonymuz-tropic-cherry"},
+        {id:"frozen-white-tropicali", name:"White Tropicali", productId:"anonymuz-white-tropicali"}
+      ]},
+      {id:"120u", label:"2 g · 120µ", options:[
+        {id:"120u-ice-cream-grape", name:"Ice Cream Cake X Grape Gas", productId:"anonymuz-ice-cream-cake-grape-gas"},
+        {id:"120u-tropicookies", name:"TropiCookies", productId:"anonymuz-Tropicali"}
+      ]}
+    ]
+  };
   appData.unshift({
-    id:"PACKS", name:"PACKS 🇺🇸", quality:"PACKS",
-    image:"Original68_Logo.jpg", icon:"🇺🇸", farmCount:1, productCount:1,
-    farms:[{id:"mini-pack-usa-farm", name:"🇺🇸 MINI PACK USA", icon:"🇺🇸", badgeText:"Offre 150 € · au lieu de 180 €", products:[miniPackUSA]}]
+    id:"PACKS", name:"PACKS 🎁", quality:"PACKS",
+    image:"Original68_Logo.jpg", icon:"🎁", farmCount:2, productCount:2,
+    farms:[
+      {id:"mini-pack-usa-farm", name:"🇺🇸 MINI PACK USA", icon:"🇺🇸", badgeText:"Offre 150 € · au lieu de 180 €", products:[miniPackUSA]},
+      {id:"pack-anonymuz-farm", name:"🌙 PACK ANONYMUZ", icon:"🌙", badgeText:"Offre 100 € · au lieu de 120 €", products:[packAnonymuz]}
+    ]
   });
 
   // Logos des farms dans les sous-catégories HASH et WEED.
@@ -944,6 +981,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
     "golden-drytech": "logos-farms/FarmGoldenDrytech.png",
     "nova-farm": "logos-farms/FarmNova.png",
     anonymuz: "logos-farms/FarmAnonymuz.png",
+    "pack-anonymuz-farm": "logos-farms/FarmAnonymuz.png",
     "paradise-valley": "logos-farms/FarmParadiseValley.png",
     smuggler: "logos-farms/FarmSmuggler.png",
     "quality-can-you-taste": "logos-farms/FarmQualityCanYouTaste.png",
@@ -954,6 +992,8 @@ Les meilleurs h du monde 🌎🧤🏆`,
     "cali-topshelf": "logos-farms/FarmCaliTopshelf.png",
   };
   function farmMonogram(name) {
+    // Sur la page d'accueil, l'icône du Mini Pack USA remplace le monogramme « MP ».
+    if (String(name || "").toUpperCase().includes("MINI PACK USA")) return "🇺🇸";
     const parts = name
       .replace(/[^A-Za-z0-9 ]/g, "")
       .split(/\s+/)
@@ -1142,7 +1182,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
             const out = Boolean(product.outOfStock);
             return `<article class="o68-product-card product-item-card" data-product-id="${escapeHtml(product.id)}" role="button" tabindex="0" aria-label="Voir ${escapeHtml(product.name)}">
                     <div class="o68-product-media"><img src="${escapeHtml(product.image || "Original68_Logo.jpg")}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='Original68_Logo.jpg'">
-                        <span class="o68-product-badge ${out ? "o68-sold-out" : ""}">${out ? "INDISPONIBLE" : product.oldPrice ? "🇺🇸 OFFRE –30 €" : "✦ SÉLECTION"}</span>
+                        <span class="o68-product-badge ${out ? "o68-sold-out" : ""}">${out ? "INDISPONIBLE" : product.oldPrice ? `✦ OFFRE –${(Number(product.oldPrice) - minPrice).toFixed(0)} €` : "✦ SÉLECTION"}</span>
                     </div>
                     <div class="o68-product-body"><span class="o68-product-type">${escapeHtml(product.type || "Sélection")}</span><strong class="o68-product-title">${escapeHtml(product.name)}</strong>
                         <div class="o68-product-farm">${escapeHtml(farm.name)}</div>
@@ -1879,8 +1919,8 @@ Les meilleurs h du monde 🌎🧤🏆`,
 
     const packChoiceHTML = Array.isArray(product.packSlots)
       ? `<div class="o68-pack-box">
-          <div class="o68-pack-deal">🇺🇸 MINI PACK USA <span><s>${product.oldPrice} €</s> <b>150 €</b></span></div>
-          <p class="o68-pack-note">Choisis une référence par ligne. Le pack comprend 5,5 g au total.</p>
+          <div class="o68-pack-deal">${escapeHtml(product.name)} <span><s>${Number(product.oldPrice).toFixed(0)} €</s> <b>${Number(product.tarifs[0].price).toFixed(0)} €</b></span></div>
+          <p class="o68-pack-note">Choisis une référence par ligne. Le pack comprend ${escapeHtml(product.packTotalWeight || "5,5 g")} au total.</p>
           ${product.packSlots.map(slot => {
             const available = slot.options.filter(opt => !opt.productId || !getProductById(opt.productId)?.outOfStock);
             return `<label class="o68-pack-choice" for="o68-pack-select-${escapeHtml(slot.id)}">
