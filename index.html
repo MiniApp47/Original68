@@ -1742,6 +1742,86 @@ body {
 
 .o68-playlist-note{font-size:10px;line-height:1.45;color:#a9a1c7;margin:12px 0 2px;}
 
+
+/* MINI PACK USA · style violet / bleu ORIGINAL68 */
+.o68-category-tabs{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+@media(min-width:650px){.o68-category-tabs{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+.o68-was-price{color:#b9afc9;text-decoration:line-through;font-size:10px;font-weight:500;margin-right:4px}
+.o68-pack-box{box-sizing:border-box;width:100%;margin:18px 0;padding:15px 12px;border:1px solid #8272e9;border-radius:16px;background:linear-gradient(135deg,rgba(47,29,109,.95),rgba(15,17,42,.96));box-shadow:0 15px 35px #06031866}
+.o68-pack-deal{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#fff;font-weight:900;font-size:13px}
+.o68-pack-deal span{white-space:nowrap}.o68-pack-deal s{color:#c4badc;font-weight:500}.o68-pack-deal b{color:#ded4ff;font-size:18px;margin-left:5px}
+.o68-pack-note{font-size:12px;line-height:1.5;color:#e1daf7}
+.o68-pack-choice{display:grid;gap:7px;padding:12px 0;border-top:1px solid #9185db4a;color:#f4efff;font-size:12px;font-weight:800;width:100%}
+.o68-pack-select{width:100%;max-width:100%;padding:11px 28px 11px 12px;border:1px solid #8c7def;border-radius:11px;background:#171334;color:#fff;font-size:13px;font-family:inherit;outline-offset:2px;cursor:pointer}
+.o68-pack-disclaimer{display:block;margin-top:9px;font-size:10px;color:#bcb6e1;line-height:1.45}
+.o68-pack-cart-choices{display:grid;gap:4px;margin:8px 0;color:#d9caff;font-size:11px;text-align:left;line-height:1.4}
+
+
+/* MINI PACK USA — affiche une grande carte qui occupe la place de 2 produits.
+   On cible uniquement l'accueil, sans modifier les autres cartes ni le panier. */
+#page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] {
+  grid-column: span 2 !important;
+  display: grid;
+  grid-template-columns: minmax(0, 45%) minmax(0, 1fr);
+  min-height: 190px;
+  border: 1.5px solid #a38aff;
+  box-shadow: 0 14px 34px rgba(66, 43, 168, .32), inset 0 0 0 1px rgba(164, 150, 255, .15);
+  background: linear-gradient(135deg, #30205e, #171332 70%);
+}
+#page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-product-media {
+  height: 100% !important;
+  min-height: 190px;
+}
+#page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-product-media img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+#page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-product-body {
+  min-width: 0;
+  min-height: 0;
+  padding: 15px 13px;
+  justify-content: center;
+}
+#page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-product-title {
+  font-size: clamp(13px, 3.8vw, 19px);
+  line-height: 1.22;
+  min-height: 0;
+  margin: 9px 0 6px;
+}
+#page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-product-type {
+  color: #c2b9ff;
+  font-size: 10px;
+}
+#page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-product-bottom {
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding-top: 14px;
+}
+#page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-price {
+  font-size: 16px;
+}
+#page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-detail-btn {
+  padding: 9px 13px;
+}
+@media (min-width: 650px) {
+  #page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] {
+    grid-template-columns: 45% 55%;
+    min-height: 235px;
+  }
+  #page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-product-media {
+    min-height: 235px;
+  }
+  #page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-product-body {
+    padding: 20px;
+  }
+}
+@media (max-width: 350px) {
+  #page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] {
+    grid-template-columns: 43% 57%;
+  }
+  #page-home #product-list > .o68-product-card[data-product-id="mini-pack-usa-150"] .o68-product-body { padding: 10px; }
+}
+
 </style>
 </head>
 

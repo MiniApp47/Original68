@@ -898,6 +898,45 @@ Les meilleurs h du monde 🌎🧤🏆`,
     },
   ];
 
+
+  // MINI PACK USA : catégorie indépendante, au-dessus des farms classiques.
+  // Les trois éléments sont sélectionnables depuis la fiche du pack.
+  // CaliPlate n'est pas référencé dans le catalogue : variante à confirmer.
+  const miniPackUSA = {
+    id: "mini-pack-usa-150",
+    name: "🇺🇸 MINI PACK USA",
+    flag: "🇺🇸",
+    farm: "ORIGINAL68 · PACKS USA",
+    type: "Pack USA · 5,5 g",
+    image: "Original68_Logo.jpg",
+    video: "",
+    description: "🇺🇸 MINI PACK USA · OFFRE LIMITÉE\n\n1 g de Humboldt ou Static Room\n1 bag Cali Top Shelf de 3,5 g\n1 g de Liquid Farm ou CaliPlate\n\nChoisis chaque référence ci-dessous. Prix unique : 150 € au lieu de 180 € (30 € économisés).",
+    oldPrice: 180,
+    promoEligible: false,
+    tarifs: [{weight:"1 pack 5,5g", price:150}],
+    packSlots: [
+      { id:"hash", label:"1 g · Humboldt / Static Room", options:[
+        {id:"humboldt-grape-gas", name:"Humboldt — Grape Gas", productId:"humboldt-grape-gas"},
+        {id:"staticroom-white-runtz", name:"Static Room — White Runtz", productId:"staticroom-white-runtz"},
+        {id:"staticroom-cereal-milk", name:"Static Room — Cereal Milk", productId:"staticroom-cereal-milk"}
+      ]},
+      { id:"bag", label:"1 bag · Cali Top Shelf (3,5 g)", options:[
+        {id:"cali-bolo-runtz", name:"Bolo Runtz — 3,5 g", productId:"cali-bolo-runtz"},
+        {id:"cali-melted-cherries", name:"Melted Cherries — 3,5 g", productId:"cali-melted-cherries"}
+      ]},
+      { id:"extract", label:"1 g · Liquid Farm / CaliPlate", options:[
+        {id:"red-planet", name:"Liquid Farm — Red Planet", productId:"Red planet"},
+        {id:"papaya", name:"Liquid Farm — Papaya", productId:"liquid-papaya"},
+        {id:"caliplate", name:"CaliPlate"}
+      ]}
+    ]
+  };
+  appData.unshift({
+    id:"PACKS", name:"PACKS 🇺🇸", quality:"PACKS",
+    image:"Original68_Logo.jpg", icon:"🇺🇸", farmCount:1, productCount:1,
+    farms:[{id:"mini-pack-usa-farm", name:"🇺🇸 MINI PACK USA", icon:"🇺🇸", badgeText:"Offre 150 € · au lieu de 180 €", products:[miniPackUSA]}]
+  });
+
   // Logos des farms dans les sous-catégories HASH et WEED.
   // Les 5 derniers logos sont découpés directement dans le menu fourni.
   const farmLogoImages = {
@@ -1103,11 +1142,11 @@ Les meilleurs h du monde 🌎🧤🏆`,
             const out = Boolean(product.outOfStock);
             return `<article class="o68-product-card product-item-card" data-product-id="${escapeHtml(product.id)}" role="button" tabindex="0" aria-label="Voir ${escapeHtml(product.name)}">
                     <div class="o68-product-media"><img src="${escapeHtml(product.image || "Original68_Logo.jpg")}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='Original68_Logo.jpg'">
-                        <span class="o68-product-badge ${out ? "o68-sold-out" : ""}">${out ? "INDISPONIBLE" : "✦ SÉLECTION"}</span>
+                        <span class="o68-product-badge ${out ? "o68-sold-out" : ""}">${out ? "INDISPONIBLE" : product.oldPrice ? "🇺🇸 OFFRE –30 €" : "✦ SÉLECTION"}</span>
                     </div>
                     <div class="o68-product-body"><span class="o68-product-type">${escapeHtml(product.type || "Sélection")}</span><strong class="o68-product-title">${escapeHtml(product.name)}</strong>
                         <div class="o68-product-farm">${escapeHtml(farm.name)}</div>
-                        <div class="o68-product-bottom"><strong class="o68-price ${out ? "o68-sold-out-price" : ""}">${out ? "RUPTURE" : `Dès ${minPrice.toFixed(0)} €`}</strong><span class="o68-detail-btn">Voir ›</span></div>
+                        <div class="o68-product-bottom"><strong class="o68-price ${out ? "o68-sold-out-price" : ""}">${out ? "RUPTURE" : product.oldPrice ? `<del class="o68-was-price">${product.oldPrice} €</del> ${minPrice.toFixed(0)} €` : `Dès ${minPrice.toFixed(0)} €`}</strong><span class="o68-detail-btn">Voir ›</span></div>
                     </div>
                 </article>`;
           })
@@ -1838,11 +1877,26 @@ Les meilleurs h du monde 🌎🧤🏆`,
       )
       .join("");
 
+    const packChoiceHTML = Array.isArray(product.packSlots)
+      ? `<div class="o68-pack-box">
+          <div class="o68-pack-deal">🇺🇸 MINI PACK USA <span><s>${product.oldPrice} €</s> <b>150 €</b></span></div>
+          <p class="o68-pack-note">Choisis une référence par ligne. Le pack comprend 5,5 g au total.</p>
+          ${product.packSlots.map(slot => {
+            const available = slot.options.filter(opt => !opt.productId || !getProductById(opt.productId)?.outOfStock);
+            return `<label class="o68-pack-choice" for="o68-pack-select-${escapeHtml(slot.id)}">
+              <span>${escapeHtml(slot.label)}</span>
+              <select id="o68-pack-select-${escapeHtml(slot.id)}" class="o68-pack-select" data-slot-id="${escapeHtml(slot.id)}">
+                ${available.map(opt => `<option value="${escapeHtml(opt.id)}">${escapeHtml(opt.name)}</option>`).join("")}
+              </select></label>`;
+          }).join("")}
+        </div>` : "";
+
     // --- DANS TA FONCTION renderProductPage ---
     detailsContainer.innerHTML = `
 <div class="name">${product.name}</div>
 <div class="farm">${product.farm}</div>
-${product.description ? `<div class="product-description">${product.description}</div>` : ""} 
+${product.description ? `<div class="product-description">${product.description}</div>` : ""}
+${packChoiceHTML} 
 <h4 class="tarifs-title">💰 Tarifs disponibles :</h4>
 <div class="tarifs-grid-container">${tarifsHTML}</div>
 `;
@@ -1866,7 +1920,8 @@ ${product.description ? `<div class="product-description">${product.description}
                 <img src="${item.image}" alt="${item.name}">
                 <div class="item-details">
                     <div class="name">${item.name}</div>
-                    <div class="gram" >${item.weight} - ${item.unitPrice.toFixed(2)}€</div>
+                    <div class="gram" >${escapeHtml(item.weight)} - ${item.unitPrice.toFixed(2)}€</div>
+                    ${item.packSelections?.length ? `<div class="o68-pack-cart-choices">${item.packSelections.map(s => `<span>${escapeHtml(s.slot)} : ${escapeHtml(s.name)}</span>`).join("")}</div>` : ""}
                     <div class="price">${item.totalPrice.toFixed(2)}€</div>
                 </div>
                 <div class="quantity-selector">
@@ -1921,7 +1976,8 @@ ${product.description ? `<div class="product-description">${product.description}
                 <img src="${item.image}" alt="${item.name}">
                 <div class="item-details">
                     <div style="color:white; font-weight:bold;">${index + 1}. ${item.name}</div>
-                    <div style="color:#aaa;">Qté: ${item.quantity}x ${item.weight}</div>
+                    <div style="color:#aaa;">Qté: ${item.quantity}x ${escapeHtml(item.weight)}</div>
+                    ${item.packSelections?.length ? `<div class="o68-pack-cart-choices">${item.packSelections.map(s => `<span>${escapeHtml(s.slot)} : ${escapeHtml(s.name)}</span>`).join("")}</div>` : ""}
                     <div style="color:#aaa;">PU: ${item.unitPrice.toFixed(2)}€</div>
                 </div>
             </div>`,
@@ -2038,8 +2094,8 @@ ${product.description ? `<div class="product-description">${product.description}
     }, 3000);
   }
 
-  function addToCart(productId, weight, price) {
-    const cartItemId = `${productId}-${weight}`;
+  function addToCart(productId, weight, price, packSelections = []) {
+    const cartItemId = `${productId}-${weight}${packSelections.length ? "-" + packSelections.map(s => s.id).join("-") : ""}`;
     const existingItem = cart.find((item) => item.id === cartItemId);
     const product = getProductById(productId);
     if (!product || product.outOfStock) {
@@ -2056,6 +2112,7 @@ ${product.description ? `<div class="product-description">${product.description}
         productId: productId,
         name: product.name,
         image: product.image,
+        packSelections: packSelections,
         weight: weight,
         quantity: 1,
         unitPrice: price,
@@ -2115,6 +2172,7 @@ ${product.description ? `<div class="product-description">${product.description}
     cart.forEach((item) => {
       message += `\n- ${item.name} (${getProductById(item.productId)?.farm || "ORIGINAL68"})`;
       message += `\n  Quantite: ${item.quantity}x ${item.weight}`;
+      if (item.packSelections?.length) item.packSelections.forEach(s => {message += `\n  • ${s.slot} : ${s.name}`;});
       message += `\n  Prix unitaire: ${item.unitPrice.toFixed(2)}e`;
       message += `\n  Sous-total: ${item.totalPrice.toFixed(2)} EUR`;
     });
@@ -2259,8 +2317,22 @@ ${product.description ? `<div class="product-description">${product.description}
       const selected = getProductById(btn.dataset.productId)?.tarifs.find(
         (t) => t.weight === btn.dataset.weight,
       );
-      if (selected)
-        addToCart(btn.dataset.productId, selected.weight, selected.price);
+      if (selected) {
+        const product = getProductById(btn.dataset.productId);
+        const packSelections = [];
+        if (product?.packSlots) {
+          for (const slot of product.packSlots) {
+            const choiceId = document.getElementById(`o68-pack-select-${slot.id}`)?.value;
+            const selectedOption = slot.options.find(o => o.id === choiceId);
+            if (!selectedOption) {showNotification("Sélectionne les trois éléments du pack."); return;}
+            if (selectedOption.productId && getProductById(selectedOption.productId)?.outOfStock) {
+              showNotification("Cette référence est en rupture : choisis-en une autre."); return;
+            }
+            packSelections.push({id:selectedOption.id, slot:slot.label, name:selectedOption.name});
+          }
+        }
+        addToCart(btn.dataset.productId, selected.weight, selected.price, packSelections);
+      }
     }
 
     if (target.closest(".quantity-btn")) {
