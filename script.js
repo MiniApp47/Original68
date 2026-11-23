@@ -2447,7 +2447,73 @@ ${packChoiceHTML}
     }
   });
 
+  // CAPTCHA de rotation dans la Mini App (barrière UX côté navigateur).
+  // IMPORTANT : le contenu étant servi statiquement, ce n'est PAS une
+  // validation anti-bot côté serveur ; voir README_SECURITE.md.
+  function setupHumanGate() {
+    const gate = document.getElementById("o68-human-gate");
+    const picture = document.getElementById("o68-human-picture");
+    const result = document.getElementById("o68-human-result");
+    const left = document.getElementById("o68-human-left");
+    const right = document.getElementById("o68-human-right");
+    const verify = document.getElementById("o68-human-verify");
+    const refresh = document.getElementById("o68-human-refresh");
+    if (!gate || !picture || !result || !left || !right || !verify || !refresh) return;
+
+    document.documentElement.classList.add("o68-captcha-locked");
+    document.body.classList.add("o68-captcha-locked");
+    let rotation = 0;
+    let mistakes = 0;
+    let lockedUntil = 0;
+    let verified = false;
+    // Angles sur 8 positions : le nom doit être droit, pas seulement proche.
+    const possibleAngles = [45, 90, 135, 180, 225, 270, 315];
+    const newChallenge = () => {
+      if (lockedUntil > Date.now()) return;
+      rotation = possibleAngles[Math.floor(Math.random() * possibleAngles.length)];
+      picture.style.transform = `rotate(${rotation}deg)`;
+      result.textContent = "";
+    };
+    const spin = (delta) => {
+      if (verified || Date.now() < lockedUntil) return;
+      rotation = (rotation + delta + 360) % 360;
+      picture.style.transform = `rotate(${rotation}deg)`;
+      result.textContent = "";
+    };
+    left.addEventListener("click", () => spin(-45));
+    right.addEventListener("click", () => spin(45));
+    refresh.addEventListener("click", newChallenge);
+    verify.addEventListener("click", () => {
+      if (verified) return;
+      const remaining = Math.ceil((lockedUntil - Date.now()) / 1000);
+      if (remaining > 0) {
+        result.textContent = `Trop d'essais. Réessaie dans ${remaining} s.`;
+        return;
+      }
+      if (rotation === 0) {
+        verified = true;
+        result.textContent = "✅ Vérification réussie !";
+        tg?.HapticFeedback?.notificationOccurred?.("success");
+        document.documentElement.classList.remove("o68-captcha-locked");
+        document.body.classList.remove("o68-captcha-locked");
+        gate.classList.add("o68-verified");
+        window.setTimeout(() => gate.remove(), 460);
+        return;
+      }
+      mistakes += 1;
+      if (mistakes >= 5) {
+        lockedUntil = Date.now() + 20000;
+        mistakes = 0;
+        result.textContent = "Trop d'essais : attends 20 secondes.";
+      } else {
+        result.textContent = `Pas encore droit. Essaie de tourner encore (${5 - mistakes} essais).`;
+      }
+    });
+    newChallenge();
+  }
+
   function init() {
+    setupHumanGate();
     const loader = document.getElementById("page-loader");
     let dismissed = false;
     const closeLoader = () => {

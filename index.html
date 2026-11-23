@@ -1833,6 +1833,47 @@ body {
   filter:drop-shadow(0 9px 14px rgba(0,0,0,.45));
 }
 
+
+/* ORIGINAL68 · CONTRÔLE HUMAIN VISUEL (rotation de l'image) */
+html.o68-captcha-locked, body.o68-captcha-locked {overflow:hidden!important;}
+.o68-human-gate {
+ position:fixed;inset:0;z-index:1950;display:flex;align-items:center;justify-content:center;
+ padding:22px 15px calc(25px + env(safe-area-inset-bottom));box-sizing:border-box;
+ background:radial-gradient(ellipse at 50% 25%,#3b247cd9,#0b0820f6 74%),#0b0820;
+ backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+ color:#f6f3ff;opacity:1;visibility:visible;transition:opacity .4s,visibility .4s;
+}
+.o68-human-gate.o68-verified{opacity:0;visibility:hidden;pointer-events:none;}
+.o68-human-card{
+ display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;box-sizing:border-box;
+ width:min(100%,360px);max-height:92dvh;overflow-y:auto;border:1px solid #8e76ecaa;
+ border-radius:24px;padding:23px 20px 20px;text-align:center;
+ background:linear-gradient(155deg,#261751ed,#130d30f7 70%);box-shadow:0 18px 75px #000b,0 0 34px #7774ff29;
+}
+.o68-human-card::before{content:'';position:absolute;inset:0 30px auto;height:2px;background:linear-gradient(90deg,transparent,#a89bff,transparent);}
+.o68-human-crest{font-size:10px;letter-spacing:2.4px;color:#adabf7;font-weight:800;}
+.o68-human-card h2{font-size:22px;letter-spacing:-.6px;margin:1px 0 0;color:#fff;}
+.o68-human-card p{font-size:12px;color:#c8bff1;line-height:1.55;margin:0;}
+.o68-human-scene{width:min(52vw,185px);height:min(52vw,185px);display:grid;place-items:center;
+ position:relative;border-radius:50%;margin:8px auto 5px;
+ background:radial-gradient(circle,#6252b02d,transparent 70%);}
+.o68-human-scene::after{content:'';position:absolute;inset:-8px;border:1px dashed #b1a2ff88;border-radius:50%;pointer-events:none;}
+.o68-human-picture{width:100%;height:100%;border-radius:50%;object-fit:cover;
+ box-shadow:0 0 0 3px #9c92ff,0 0 32px #7058ff6b;transition:transform .32s cubic-bezier(.2,.85,.3,1.18);
+ user-select:none;-webkit-user-drag:none;pointer-events:none;}
+.o68-human-turn-buttons{display:flex;justify-content:center;gap:12px;width:100%;margin-top:1px;}
+.o68-human-turn-buttons button{border:1px solid #8a83dd;color:#fff;background:#2e225b;border-radius:12px;
+ min-height:44px;flex:1;font-size:14px;font-weight:800;cursor:pointer;}
+.o68-human-turn-buttons button:active{transform:scale(.97);}
+.o68-human-submit{min-height:45px;width:100%;border:0;border-radius:12px;
+ background:linear-gradient(100deg,#8255ed,#5d7efd);box-shadow:0 8px 20px #715bee45;
+ color:white;font-size:14px;font-weight:800;cursor:pointer;}
+.o68-human-new{font-size:12px;color:#cfc5ff;border:none;background:transparent;text-decoration:underline;
+ cursor:pointer;padding:7px;}
+.o68-human-error{color:#ffd0d5!important;min-height:17px;font-weight:600;}
+.o68-human-card button:focus-visible{outline:3px solid #e0d8ff;outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){.o68-human-picture,.o68-human-gate{transition:none!important;}}
+
 </style>
 </head>
 
@@ -2026,6 +2067,27 @@ body {
         <div class="o68-launch-message">Ouverture de la boutique <span class="o68-dots">•••</span></div>
       </div>
     </div>
+
+    <!-- Contrôle à l'entrée du site. Vérification d'orientation d'image. -->
+    <section id="o68-human-gate" class="o68-human-gate" role="dialog" aria-modal="true"
+             aria-labelledby="o68-human-title" aria-describedby="o68-human-help">
+      <div class="o68-human-card">
+        <span class="o68-human-crest">🛡️ ORIGINAL68 · HUMAN CHECK</span>
+        <h2 id="o68-human-title">Vérification de sécurité</h2>
+        <p id="o68-human-help">Remets le logo à l'endroit avec les flèches pour accéder au site.</p>
+        <div class="o68-human-scene">
+          <img id="o68-human-picture" class="o68-human-picture" src="Original68_Logo.jpg"
+               alt="Logo ORIGINAL68 à remettre à l'endroit" draggable="false">
+        </div>
+        <div class="o68-human-turn-buttons">
+          <button type="button" id="o68-human-left" aria-label="Tourner l'image de 45 degrés à gauche">↶ Tourner à gauche</button>
+          <button type="button" id="o68-human-right" aria-label="Tourner l'image de 45 degrés à droite">Tourner à droite ↷</button>
+        </div>
+        <button type="button" id="o68-human-verify" class="o68-human-submit">✓ Vérifier l'image</button>
+        <p id="o68-human-result" class="o68-human-error" role="status" aria-live="polite"></p>
+        <button type="button" id="o68-human-refresh" class="o68-human-new">Changer l'orientation</button>
+      </div>
+    </section>
 
     <div id="page-home" class="page">
         <div class="o68-hero">
