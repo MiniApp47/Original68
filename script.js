@@ -699,6 +699,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
           products: [
             {
               id: "no-farm-tropical-mango",
+              outOfStock: true, // Produit indisponible : aucune commande possible
               name: "Tropical Mango 🥭",
               flag: "🌴",
               farm: "Apiculteur farm 🐝🍯",
