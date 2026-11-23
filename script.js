@@ -369,6 +369,7 @@ Les meilleurs h du monde 🌎🧤🏆`,
             },
             {
               id: "paradise-forbiden-tropic",
+                            outOfStock: true, // Produit indisponible : aucune commande possible
               name: "Forbiden Tropic 🍍",
               flag: "🇮🇹",
               farm: "PARADISE VALLEY 🇮🇹🇲🇦",
